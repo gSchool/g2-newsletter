@@ -10,7 +10,7 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure: U0Jb7oON+LrnMiZ4VDaZPgk31yg4rdM0IR1VSbRo0YjgQg3Uk3I3fFMzk3et4/paiH4kNYJEEXlLE4sYVhgwIKRdms+Ouzd0PEOYERp4brUZeZmnnc5O0RKp60fnGAkAtwRPtD6qxMIrAdUFjHLNbSTYfh0caPUTHxyp6sctLhM=
+    secure: mL2coSQt5rL3R0RHPC2CBvNH0DliADEzpUL/lw8UapizeCeqifhMuwDxRrUdacVHoxdHYW12UdyUvpQeUyyU6jJujgs4+1+abrkqmT55fmPx0YyaqXdQmJOpfJVaSW7giPO+eB+S/zVKU1le3M2lax35wuwyPsIaqdYYK7/SWwU=
   app: g2-newsletter-staging
   on:
     repo: gSchool/g2-newsletter
