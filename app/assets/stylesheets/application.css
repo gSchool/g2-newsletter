@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+.root_links {
+    text-align: center;
+}
+
+.root_h1 {
+    text-align: center;
+    margin-top: 15%;
+
+}
