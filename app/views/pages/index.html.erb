@@ -1,13 +1,11 @@
-<% if @user.nil? %>
-  Login
-  <%= link_to "Register", new_user_path %>
+<h1 class="root_h1">Newsletter</h1>
 
-<% else %>
-
-Welcome  <%= @user.email %>
-
-<% end %>
-
-
-
-
+<div class="root_links">
+  <% if @user.nil? %>
+    <a href="#login">Login</a>
+    <%= link_to "Register", new_user_path %>
+  <% else %>
+    Welcome  <%= @user.email %>
+  <% end %>
+  <a href="#Publications">Publications</a>
+</div>
