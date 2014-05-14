@@ -12,6 +12,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :test do
-gem 'rspec-core', '~> 2.14.8'
+gem 'rspec-rails'
 gem 'capybara'
 end
+
+
