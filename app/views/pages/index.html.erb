@@ -1,1 +1,13 @@
-Welcome
+<% if @user.nil? %>
+  Login
+  <%= link_to "Register", new_user_path %>
+
+<% else %>
+
+Welcome  <%= @user.email %>
+
+<% end %>
+
+
+
+
