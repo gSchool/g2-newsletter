@@ -37,10 +37,20 @@ feature 'Registering an account' do
     visit '/'
     click_on 'Register'
     fill_in 'user[email]', :with => 'email@example.com'
-    fill_in 'user[password]', :with => '  '
-    fill_in 'user[password_confirmation]', :with => ' '
+    fill_in 'user[password]', :with => ''
+    fill_in 'user[password_confirmation]', :with => ''
     click_on 'register'
     expect(page).to have_content "Password can't be blank"
+  end
+
+  scenario 'guest cannot register if password field does not match password confirmation field' do
+    visit '/'
+    click_on 'Register'
+    fill_in 'user[email]', :with => 'email@example.com'
+    fill_in 'user[password]', :with => 'cool'
+    fill_in 'user[password_confirmation]', :with => 'whatever'
+    click_on 'register'
+    expect(page).to have_content "Passwords must match"
   end
 
 end
