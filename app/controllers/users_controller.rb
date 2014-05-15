@@ -6,8 +6,16 @@ class UsersController < ApplicationController
   def create
     email = params[:user][:email]
     password = params[:user][:password]
-    @user = User.create(:email => email, :password => password)
-    if @user.save
+    password_confirmation = params[:user][:password_confirmation]
+    @user = User.new(:email => email, :password => password)
+
+    if password != password_confirmation
+      @notice = "Passwords must match"
+      render :new
+    elsif password.length < 8
+      @notice = "Password must be longer than 8 characters"
+      render :new
+    elsif @user.save
       session[:user_id] = @user.id
       redirect_to root_path, notice: "User Created"
     else

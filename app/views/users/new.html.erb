@@ -1,4 +1,11 @@
+<%= @notice %>
 <%= form_for @user do |f| %>
+
+  <% if @user.errors.present? %>
+    <% @user.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
 
   <%= f.label :email %>
   <%= f.text_field :email %>
