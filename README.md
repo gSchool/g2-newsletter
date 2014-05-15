@@ -12,7 +12,7 @@ This application will be used to import publications and allow users to subscrib
 
 ## Important Links
 
-* [Staging](http://newsletter-staging.herokuapp.com/)
+* [Staging](http://g2-newsletter-staging.herokuapp.com/)
 
 * [Tracker](https://www.pivotaltracker.com/n/projects/1079700)
 
