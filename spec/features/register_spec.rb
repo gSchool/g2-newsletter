@@ -21,4 +21,13 @@ feature 'Registering an account' do
     click_on 'Logout'
     expect(page).to_not have_content 'email@email.com'
   end
+
+  scenario 'email cannot be blank when trying to register' do
+    visit '/'
+    click_on 'Register'
+    fill_in 'user[email]', :with => '  '
+    fill_in 'user[password]', :with => 'password'
+    click_on 'register'
+    expect(page).to have_content "Email can't be blank"
+  end
 end
