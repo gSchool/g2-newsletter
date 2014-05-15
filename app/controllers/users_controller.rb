@@ -20,7 +20,8 @@ class UsersController < ApplicationController
      render :new
     elsif @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "User Created"
+      flash[:notice] = "Welcome"
+      redirect_to root_path
     else
       render :new
     end
