@@ -6,6 +6,8 @@
     <%= link_to "Register", new_user_path %>
   <% else %>
     Welcome  <%= @user.email %>
+    <a href="/logout">Logout</a>
+    <h1>My Subscriptions</h1>
   <% end %>
   <a href="#Publications">Publications</a>
 </div>

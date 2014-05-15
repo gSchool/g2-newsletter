@@ -12,11 +12,13 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20140514222607) do
-  # These are extensions that must be enabled in order to support this database
 
+  # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
   create_table "users", force: true do |t|
     t.string "email"
     t.string "password"
   end
+
 end
