@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :users
 
+  get '/logout', to: 'users#logout'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
