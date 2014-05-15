@@ -15,6 +15,9 @@ class UsersController < ApplicationController
     elsif password.length < 8
       @notice = "Password must be longer than 8 characters"
       render :new
+    elsif /[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,3}/.match(email).nil?
+      @notice = "Must be a valid email address"
+     render :new
     elsif @user.save
       session[:user_id] = @user.id
       redirect_to root_path, notice: "User Created"
