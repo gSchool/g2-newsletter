@@ -60,7 +60,7 @@ feature 'Registering an account' do
     fill_in 'user[password]', :with => 'cool'
     fill_in 'user[password_confirmation]', :with => 'cool'
     click_on 'register'
-    expect(page).to have_content "Password must be longer than 8 chars"
+    expect(page).to have_content "Password must be longer than 8 characters"
   end
 
 end
