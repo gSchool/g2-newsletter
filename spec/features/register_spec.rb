@@ -37,8 +37,8 @@ feature 'Registering an account' do
     visit '/'
     click_on 'Register'
     fill_in 'user[email]', :with => 'email@example.com'
-    fill_in 'user[password]', :with => ''
-    fill_in 'user[password_confirmation]', :with => ''
+    fill_in 'user[password]', :with => '        '
+    fill_in 'user[password_confirmation]', :with => '        '
     click_on 'register'
     expect(page).to have_content "Password can't be blank"
   end
@@ -51,6 +51,16 @@ feature 'Registering an account' do
     fill_in 'user[password_confirmation]', :with => 'whatever'
     click_on 'register'
     expect(page).to have_content "Passwords must match"
+  end
+
+  scenario 'guest cannot register if password is less than 8 chars' do
+    visit '/'
+    click_on 'Register'
+    fill_in 'user[email]', :with => 'email@example.com'
+    fill_in 'user[password]', :with => 'cool'
+    fill_in 'user[password_confirmation]', :with => 'cool'
+    click_on 'register'
+    expect(page).to have_content "Password must be longer than 8 chars"
   end
 
 end

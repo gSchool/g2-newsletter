@@ -12,8 +12,11 @@ class UsersController < ApplicationController
     if password != password_confirmation
       @notice = "Passwords must match"
       render :new
+    elsif password.length < 8
+      @notice = "Password must be longer than 8 chars"
+      render :new
     elsif @user.save
-      session[:user_id] = @user.id 
+      session[:user_id] = @user.id
       redirect_to root_path, notice: "User Created"
     else
       render :new
