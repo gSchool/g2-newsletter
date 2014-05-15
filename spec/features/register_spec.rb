@@ -63,4 +63,22 @@ feature 'Registering an account' do
     expect(page).to have_content "Password must be longer than 8 characters"
   end
 
+  scenario 'guest cannot register with an email that has been registered before' do
+    visit '/'
+    click_on 'Register'
+    fill_in 'user[email]', :with => 'email@example.com'
+    fill_in 'user[password]', :with => 'password'
+    fill_in 'user[password_confirmation]', :with => 'password'
+    click_on 'register'
+    click_on 'Logout'
+    visit '/'
+    click_on 'Register'
+    fill_in 'user[email]', :with => 'email@example.com'
+    fill_in 'user[password]', :with => 'password'
+    fill_in 'user[password_confirmation]', :with => 'password'
+    click_on 'register'
+    expect(page).to have_content "Email has already been taken"
+
+  end
+
 end
