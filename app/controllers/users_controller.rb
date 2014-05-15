@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       @notice = "Passwords must match"
       render :new
     elsif password.length < 8
-      @notice = "Password must be longer than 8 chars"
+      @notice = "Password must be longer than 8 characters"
       render :new
     elsif @user.save
       session[:user_id] = @user.id
