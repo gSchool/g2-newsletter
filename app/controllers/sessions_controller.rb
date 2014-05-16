@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     if user.nil?
       render :new
     else
-      user.password == password
+      user.password_digest == password
       session[:user_id] = user.id
       flash[:notice] = "Welcome back"
       redirect_to root_path
