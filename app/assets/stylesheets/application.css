@@ -16,10 +16,19 @@
 
 .root_links {
     text-align: center;
+    margin-top: 15%;
 }
 
-.root_h1 {
-    text-align: center;
-    margin-top: 15%;
 
+.register_form {
+    margin-top: 19%;
+    margin-left: 37%;
+}
+
+.td {
+    width: 1em;
+}
+
+body {
+    background-color: #faf3e6;
 }

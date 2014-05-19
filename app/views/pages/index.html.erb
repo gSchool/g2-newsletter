@@ -1,11 +1,11 @@
-<h1 class="root_h1">Newsletter</h1>
+<h1>Newsletter</h1>
 <div class="root_links">
   <% if @user.nil? %>
     <%= link_to "Login", login_path %>
-
     <%= link_to "Register", sign_up_path %>
   <% else %>
     <a href="/logout">Logout</a>
+
     <h1>My Subscriptions</h1>
   <% end %>
   <a href="#Publications">Publications</a>
