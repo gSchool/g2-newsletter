@@ -5,7 +5,7 @@ feature 'Registering an account' do
     visit '/'
     click_on 'Register'
     fill_in 'user[email]', :with => 'email@email.com'
-    fill_in 'user[password_digest]', :with => 'password'
+    fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
     click_on 'register'
     expect(page).to have_content 'Welcome email@email.com'
@@ -15,7 +15,7 @@ feature 'Registering an account' do
     visit '/'
     click_on 'Register'
     fill_in 'user[email]', :with => 'email@email.com'
-    fill_in 'user[password_digest]', :with => 'password'
+    fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
     click_on 'register'
     expect(page).to have_content 'Welcome email@email.com'
@@ -27,7 +27,7 @@ feature 'Registering an account' do
     visit '/'
     click_on 'Register'
     fill_in 'user[email]', :with => '         '
-    fill_in 'user[password_digest]', :with => 'password'
+    fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
     click_on 'register'
     expect(page).to have_content "Must be a valid email address"
@@ -37,7 +37,7 @@ feature 'Registering an account' do
     visit '/'
     click_on 'Register'
     fill_in 'user[email]', :with => 'email@example.com'
-    fill_in 'user[password_digest]', :with => '        '
+    fill_in 'user[password]', :with => '        '
     fill_in 'user[password_confirmation]', :with => '        '
     click_on 'register'
     expect(page).to have_content "Password can't be blank"
@@ -47,17 +47,17 @@ feature 'Registering an account' do
     visit '/'
     click_on 'Register'
     fill_in 'user[email]', :with => 'email@example.com'
-    fill_in 'user[password_digest]', :with => 'coolcool'
+    fill_in 'user[password]', :with => 'coolcool'
     fill_in 'user[password_confirmation]', :with => 'whatever'
     click_on 'register'
-    expect(page).to have_content "Passwords must match"
+    expect(page).to have_content "Password confirmation doesn't match Password"
   end
 
   scenario 'guest cannot register if password is less than 8 chars' do
     visit '/'
     click_on 'Register'
     fill_in 'user[email]', :with => 'email@example.com'
-    fill_in 'user[password_digest]', :with => 'cool'
+    fill_in 'user[password]', :with => 'cool'
     fill_in 'user[password_confirmation]', :with => 'cool'
     click_on 'register'
     expect(page).to have_content "Password must be longer than 8 characters"
@@ -67,14 +67,14 @@ feature 'Registering an account' do
     visit '/'
     click_on 'Register'
     fill_in 'user[email]', :with => 'email@example.com'
-    fill_in 'user[password_digest]', :with => 'password'
+    fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
     click_on 'register'
     click_on 'Logout'
     visit '/'
     click_on 'Register'
     fill_in 'user[email]', :with => 'email@example.com'
-    fill_in 'user[password_digest]', :with => 'password'
+    fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
     click_on 'register'
     expect(page).to have_content "Email has already been taken"
@@ -84,7 +84,7 @@ feature 'Registering an account' do
     visit '/'
     click_on 'Register'
     fill_in 'user[email]', :with => 'example'
-    fill_in 'user[password_digest]', :with => 'coolcool'
+    fill_in 'user[password]', :with => 'coolcool'
     fill_in 'user[password_confirmation]', :with => 'coolcool'
     click_on 'register'
     expect(page).to have_content "Must be a valid email address"

@@ -5,11 +5,10 @@ class UsersController < ApplicationController
 
   def create
     email = params[:user][:email]
-    password = params[:user][:password_digest]
+    password = params[:user][:password]
+    password_confirmation = params[:user][:password_confirmation]
 
-    @user = User.new(:email => email, :password_digest => password)
-
-
+    @user = User.new(:email => email, :password => password, :password_confirmation => password_confirmation)
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "Welcome"
