@@ -17,7 +17,6 @@ describe User do
 
     it "should be not be valid with a short password" do
       @user = User.new email: "whatever@gmail.com", password: 'short', password_confirmation: 'short'
-      p @user.errors
       expect(@user).to have(1).error_on(:password)
 
     end
