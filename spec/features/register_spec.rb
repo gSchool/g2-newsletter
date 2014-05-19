@@ -26,11 +26,11 @@ feature 'Registering an account' do
   scenario 'email cannot be blank when trying to register' do
     visit '/'
     click_on 'Register'
-    fill_in 'user[email]', :with => '  '
+    fill_in 'user[email]', :with => '         '
     fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
     click_on 'register'
-    expect(page).to have_content "Email can't be blank"
+    expect(page).to have_content "Must be a valid email address"
   end
 
   scenario 'password cannot be blank when trying to register' do
@@ -78,7 +78,16 @@ feature 'Registering an account' do
     fill_in 'user[password_confirmation]', :with => 'password'
     click_on 'register'
     expect(page).to have_content "Email has already been taken"
+  end
 
+  scenario 'guest cannot register if email is not valid' do
+    visit '/'
+    click_on 'Register'
+    fill_in 'user[email]', :with => 'example'
+    fill_in 'user[password]', :with => 'coolcool'
+    fill_in 'user[password_confirmation]', :with => 'coolcool'
+    click_on 'register'
+    expect(page).to have_content "Must be a valid email address"
   end
 
 end
