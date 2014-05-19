@@ -7,20 +7,12 @@ class UsersController < ApplicationController
     email = params[:user][:email]
     password = params[:user][:password]
     password_confirmation = params[:user][:password_confirmation]
-    @user = User.new(:email => email, :password => password)
 
-    if password != password_confirmation
-      @notice = "Passwords must match"
-      render :new
-    elsif password.length < 8
-      @notice = "Password must be longer than 8 characters"
-      render :new
-    elsif /[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,3}/.match(email).nil?
-      @notice = "Must be a valid email address"
-     render :new
-    elsif @user.save
+    @user = User.new(:email => email, :password => password, :password_confirmation => password_confirmation)
+    if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "User Created"
+      flash[:notice] = "Welcome"
+      redirect_to root_path
     else
       render :new
     end
@@ -28,6 +20,6 @@ class UsersController < ApplicationController
 
   def logout
     session.clear
-    redirect_to root_path, notice: "You are now logged out"
+    redirect_to root_path
   end
 end

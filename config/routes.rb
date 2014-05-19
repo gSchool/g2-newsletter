@@ -4,12 +4,19 @@ Rails.application.routes.draw do
 
    root 'pages#index'
 
-  resources :users
+  resources :users, :only => [:create, :show, :destroy]
+  resources :sessions, :only => [:create, :destroy]
 
-  get '/logout', to: 'users#logout'
+   get '/login', to: 'sessions#create'
+
+  get '/logout', to: 'sessions#destroy'
+
+  get '/sign_up', to: 'users#new'
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  #   get 'products/:id' => 'catalog#view
+  #
+
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
