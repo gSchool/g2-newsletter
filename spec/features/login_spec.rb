@@ -15,6 +15,18 @@ feature 'Login' do
     fill_in 'email', :with => 'email@example.com'
     fill_in 'password', :with => 'password'
     click_on 'login'
-    expect(page).to have_content "Welcome back email@example.com"
-    end
+    expect(page).to have_content "Welcome back"
+  end
+  scenario 'a user can logout' do
+    visit '/'
+    click_on 'Register'
+    fill_in 'user[email]', :with => 'email@email.com'
+    fill_in 'user[password]', :with => 'password'
+    fill_in 'user[password_confirmation]', :with => 'password'
+    click_on 'Register'
+    click_on 'Logout'
+    expect(page).to_not have_content 'Welcome to the newsletter application'
+    expect(page).to have_content 'You have logged out.'
+  end
+
 end

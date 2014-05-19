@@ -8,20 +8,10 @@ feature 'Registering an account' do
     fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
     click_on 'Register'
-    expect(page).to have_content 'Welcome to the newsletter application email@email.com'
+    expect(page).to have_content 'Welcome to the newsletter application'
 
   end
 
-  scenario 'a guest can logout' do
-    visit '/'
-    click_on 'Register'
-    fill_in 'user[email]', :with => 'email@email.com'
-    fill_in 'user[password]', :with => 'password'
-    fill_in 'user[password_confirmation]', :with => 'password'
-    click_on 'Register'
-    click_on 'Logout'
-    expect(page).to_not have_content 'Welcome to the newsletter application email@email.com'
-  end
 
   scenario 'email cannot be blank when trying to register' do
     visit '/'
