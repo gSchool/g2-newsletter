@@ -1,11 +1,9 @@
 <div class="errors">
   <ul>
-<% if @user.errors.present? %>
   <% @user.errors.full_messages.each do |message| %>
       <li><%= message %></li>
   <% end %>
   </ul>
-<% end %>
   </div>
 <%= form_for @user do |f| %>
   <table class="register_form">
