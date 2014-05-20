@@ -26,8 +26,8 @@ describe User do
     end
 
     it "should not be valid with a confirmation mismatch" do
-      user = User.new email: "whatever", password: 'shortshort', password_confirmation: 'longlong'
-      user.should_not be_valid
+      @user = User.new email: "whatever", password: 'shortshort', password_confirmation: 'longlong'
+      expect(@user).to have(1).error_on(:password_confirmation)
     end
     it "should be valid with a password of 8 characters " do
       user = User.new email: "email@example.com", password: 'shortshort', password_confirmation: 'shortshort'
