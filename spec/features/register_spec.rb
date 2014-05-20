@@ -9,6 +9,7 @@ feature 'Registering an account' do
     fill_in 'user[password_confirmation]', :with => 'password'
     click_on 'Register'
     expect(page).to have_content 'Welcome to the newsletter application'
+    expect(page).to have_content 'Logout'
 
   end
 
