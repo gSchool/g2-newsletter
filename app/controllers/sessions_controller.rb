@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
       flash[:notice] = "Welcome back #{user.email}"
       redirect_to root_path
     else
+      flash[:notice] = "Email/password incorrect"
       render :new
     end
 
