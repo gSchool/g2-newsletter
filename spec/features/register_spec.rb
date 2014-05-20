@@ -34,7 +34,7 @@ feature 'Registering an account' do
     fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
     click_button 'Register'
-    expect(page).to have_content "Must be a valid email address"
+    expect(page).to have_content "must be a valid email address"
   end
 
   scenario 'password cannot be blank when trying to register' do
@@ -54,7 +54,7 @@ feature 'Registering an account' do
     fill_in 'user[password]', :with => 'coolcool'
     fill_in 'user[password_confirmation]', :with => 'whatever'
     click_button 'Register'
-    expect(page).to have_content "Password confirmation doesn't match Password"
+    expect(page).to have_content "does not match password"
   end
 
   scenario 'guest cannot register if password is less than 8 chars' do
@@ -91,6 +91,6 @@ feature 'Registering an account' do
     fill_in 'user[password]', :with => 'coolcool'
     fill_in 'user[password_confirmation]', :with => 'coolcool'
     click_button 'Register'
-    expect(page).to have_content "Must be a valid email address"
+    expect(page).to have_content "must be a valid email address"
   end
 end
