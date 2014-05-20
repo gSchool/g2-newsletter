@@ -3,40 +3,48 @@ require 'spec_helper'
 describe User do
   describe "Validations" do
 
-    it 'should not be valid without an email' do
-      @user = User.new email: "", password: 'password', password_confirmation: 'password'
-      expect(@user).to_not be_valid
-      expect(@user).to have(2).error_on(:email)
+    let(:user) {create_user }
+    let(:user2) {new_user(email: 'whatever@gmail.com') }
+
+    it 'can create a new user' do
+      expect(user).to be_valid
     end
-    it 'should be valid with a valid email address' do
-      user = User.new email: "whatever@gmail.com", password: 'password', password_confirmation: 'password'
-      user.should be_valid
+
+    it 'should not be valid without an email' do
+      user.email = nil
+      expect(user).to_not be_valid
+      expect(user).to have(2).errors_on(:email)
     end
 
     it "should not be valid without a password" do
-      @user = User.new email: "whatever@gmail.com", password: '', password_confirmation: ''
-      expect(@user).to_not be_valid
-      expect(@user).to have(1).error_on(:password)
+      user.password = nil
+      user.password_confirmation = nil
+      expect(user).to_not be_valid
+      expect(user).to have(1).error_on(:password)
     end
 
     it "should be not be valid with a short password" do
-      @user = User.new email: "whatever@gmail.com", password: 'short', password_confirmation: 'short'
-      expect(@user).to have(1).error_on(:password)
+      user.password = 'short'
+      user.password_confirmation = 'short'
+      expect(user).to have(1).error_on(:password)
 
     end
 
     it "should not be valid with a confirmation mismatch" do
-      @user = User.new email: "whatever", password: 'shortshort', password_confirmation: 'longlong'
-      expect(@user).to have(1).error_on(:password_confirmation)
+      user.password = 'longlong'
+      user.password_confirmation = 'shortshort'
+      expect(user).to have(1).error_on(:password_confirmation)
     end
     it "should be valid with a password of 8 characters " do
-      user = User.new email: "email@example.com", password: '88888888', password_confirmation: '88888888'
-      user.should be_valid
+      user.password = '88888888'
+      user.password_confirmation = '88888888'
+      expect(user).to have(0).error_on(:password)
+
+      expect(user).to be_valid
     end
     it "should not be valid with a duplicate email" do
-      User.create! email: "email@example.com", password: 'shortshort', password_confirmation: 'shortshort'
-      @user2 = User.new email: "email@example.com", password: 'shortshort', password_confirmation: 'shortshort'
-     expect(@user2).to have(1).error_on(:email)
+      user.update_attributes(email: 'whatever@gmail.com')
+      expect(user2).to have(1).error_on(:email)
     end
   end
 end
