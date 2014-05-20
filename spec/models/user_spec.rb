@@ -25,6 +25,10 @@ describe User do
       user = User.new email: "whatever", password: 'shortshort', password_confirmation: 'longlong'
       user.should_not be_valid
     end
+    it "should be valid with a password of 8 characters " do
+      user = User.new email: "email@example.com", password: 'shortshort', password_confirmation: 'shortshort'
+      user.should be_valid
+      end
   end
 end
 
