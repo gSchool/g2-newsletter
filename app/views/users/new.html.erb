@@ -1,4 +1,5 @@
-<%= @notice %>
+
+<%=  content_for :foo, "bar" %><%= @notice %>
 <% if @user.errors.present? %>
   <% @user.errors.full_messages.each do |message| %>
     <%= message %>

@@ -7,7 +7,7 @@ feature 'Registering an account' do
     fill_in 'user[email]', :with => 'email@email.com'
     fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
-    click_on 'Register'
+    click_button 'Register'
     expect(page).to have_content 'Welcome email@email.com'
   end
 
@@ -17,7 +17,7 @@ feature 'Registering an account' do
     fill_in 'user[email]', :with => 'email@email.com'
     fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
-    click_on 'Register'
+    click_button 'Register'
     expect(page).to have_content 'Welcome email@email.com'
     click_on 'Logout'
     expect(page).to_not have_content 'email@email.com'
@@ -29,7 +29,7 @@ feature 'Registering an account' do
     fill_in 'user[email]', :with => '         '
     fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
-    click_on 'Register'
+    click_button 'Register'
     expect(page).to have_content "Must be a valid email address"
   end
 
@@ -39,7 +39,7 @@ feature 'Registering an account' do
     fill_in 'user[email]', :with => 'email@example.com'
     fill_in 'user[password]', :with => '        '
     fill_in 'user[password_confirmation]', :with => '        '
-    click_on 'Register'
+    click_button 'Register'
     expect(page).to have_content "Password can't be blank"
   end
 
@@ -49,7 +49,7 @@ feature 'Registering an account' do
     fill_in 'user[email]', :with => 'email@example.com'
     fill_in 'user[password]', :with => 'coolcool'
     fill_in 'user[password_confirmation]', :with => 'whatever'
-    click_on 'Register'
+    click_button 'Register'
     expect(page).to have_content "Password confirmation doesn't match Password"
   end
 
@@ -59,7 +59,7 @@ feature 'Registering an account' do
     fill_in 'user[email]', :with => 'email@example.com'
     fill_in 'user[password]', :with => 'cool'
     fill_in 'user[password_confirmation]', :with => 'cool'
-    click_on 'Register'
+    click_button 'Register'
     expect(page).to have_content "Password must be longer than 8 characters"
   end
 
@@ -69,14 +69,14 @@ feature 'Registering an account' do
     fill_in 'user[email]', :with => 'email@example.com'
     fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
-    click_on 'Register'
+    click_button 'Register'
     click_on 'Logout'
     visit '/'
     click_on 'Register'
     fill_in 'user[email]', :with => 'email@example.com'
     fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
-    click_on 'Register'
+    click_button 'Register'
     expect(page).to have_content "Email has already been taken"
   end
 
@@ -86,7 +86,7 @@ feature 'Registering an account' do
     fill_in 'user[email]', :with => 'example'
     fill_in 'user[password]', :with => 'coolcool'
     fill_in 'user[password_confirmation]', :with => 'coolcool'
-    click_on 'Register'
+    click_button 'Register'
     expect(page).to have_content "Must be a valid email address"
   end
 

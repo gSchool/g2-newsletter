@@ -32,3 +32,18 @@
 body {
     background-color: #faf3e6;
 }
+
+header h1 {
+    display:inline-block;
+}
+
+ul.secondary-nav {
+    float: right;
+
+    li {
+      display: inline-block;
+    }
+}
+
+
+
