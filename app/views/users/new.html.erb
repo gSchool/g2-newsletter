@@ -1,10 +1,14 @@
-
-<%=  content_for :foo, "bar" %><%= @notice %>
+<%= @notice %>
 <% if @user.errors.present? %>
-  <% @user.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
+
+  <div class="errors">
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
 <% end %>
+</ul>
+</div>
 <%= form_for @user do |f| %>
   <table class="register_form">
     <tr>
@@ -22,11 +26,10 @@
       <td><%= f.password_field :password_confirmation %></td>
     </tr>
 
-  <tr>
-    <td><%= f.submit :register, :value => "Register" %></td>
-    <td></td>
-  </tr>
-
+    <tr>
+      <td><%= f.submit :register, :value => "Register" %></td>
+      <td></td>
+    </tr>
 <% end %>
 </table>
 

@@ -10,6 +10,7 @@ feature 'Registering an account' do
     click_button 'Register'
     expect(page).to have_content 'Welcome to the newsletter application'
     expect(page).to have_content 'email@email.com'
+    expect(page).to have_content 'Logout'
   end
 
   scenario 'a guest can logout' do
@@ -63,7 +64,7 @@ feature 'Registering an account' do
     fill_in 'user[password]', :with => 'cool'
     fill_in 'user[password_confirmation]', :with => 'cool'
     click_button 'Register'
-    expect(page).to have_content "Password must be longer than 8 characters"
+    expect(page).to have_content "Password must be 8 or more characters"
   end
 
   scenario 'guest cannot register with an email that has been registered before' do
