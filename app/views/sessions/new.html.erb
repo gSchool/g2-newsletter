@@ -1,6 +1,4 @@
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, class: name %>
-<% end %>
+
 <%= form_tag('/sessions') do %>
   <%= label_tag :email %>
   <%= text_field_tag :email %>
