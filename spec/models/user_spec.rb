@@ -30,7 +30,7 @@ describe User do
       expect(@user).to have(1).error_on(:password_confirmation)
     end
     it "should be valid with a password of 8 characters " do
-      user = User.new email: "email@example.com", password: 'shortshort', password_confirmation: 'shortshort'
+      user = User.new email: "email@example.com", password: '88888888', password_confirmation: '88888888'
       user.should be_valid
     end
     it "should not be valid with a duplicate email" do
