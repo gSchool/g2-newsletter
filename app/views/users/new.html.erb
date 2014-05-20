@@ -1,9 +1,10 @@
-<%= @notice %>
-<% if @user.errors.present? %>
+<div class="errors">
+  <ul>
   <% @user.errors.full_messages.each do |message| %>
-    <%= message %>
+      <li><%= message %></li>
   <% end %>
-<% end %>
+  </ul>
+  </div>
 <%= form_for @user do |f| %>
   <table class="register_form">
     <tr>
