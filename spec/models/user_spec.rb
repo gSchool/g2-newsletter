@@ -35,9 +35,8 @@ describe User do
     end
     it "should not be valid with a duplicate email" do
       User.create email: "email@example.com", password: 'shortshort', password_confirmation: 'shortshort'
-      user2 = User.new email: "email@example.com", password: 'shortshort', password_confirmation: 'shortshort'
-      user2.should_not be_valid
-      
+      @user2 = User.new email: "email@example.com", password: 'shortshort', password_confirmation: 'shortshort'
+     expect(@user2).to have(1).error_on(:email)
     end
   end
 end
