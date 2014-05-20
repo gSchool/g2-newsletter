@@ -1,6 +1,6 @@
 # g2-newsletter
 [![Build Status](https://travis-ci.org/gSchool/g2-newsletter.svg?branch=master)](https://travis-ci.org/gSchool/g2-newsletter)
-
+[![Code Climate](https://codeclimate.com/github/gSchool/g2-newsletter.png)](https://codeclimate.com/github/gSchool/g2-newsletter)
 
 ## Background
 

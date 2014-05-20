@@ -8,7 +8,8 @@ feature 'Registering an account' do
     fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
     click_button 'Register'
-    expect(page).to have_content 'Welcome email@email.com'
+    expect(page).to have_content 'Welcome to the newsletter application'
+    expect(page).to have_content 'email@email.com'
   end
 
   scenario 'a guest can logout' do
@@ -18,10 +19,12 @@ feature 'Registering an account' do
     fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
     click_button 'Register'
-    expect(page).to have_content 'Welcome email@email.com'
+    expect(page).to have_content 'Welcome to the newsletter application'
+    expect(page).to have_content 'email@email.com'
     click_on 'Logout'
     expect(page).to_not have_content 'email@email.com'
   end
+
 
   scenario 'email cannot be blank when trying to register' do
     visit '/'
@@ -89,5 +92,4 @@ feature 'Registering an account' do
     click_button 'Register'
     expect(page).to have_content "Must be a valid email address"
   end
-
 end

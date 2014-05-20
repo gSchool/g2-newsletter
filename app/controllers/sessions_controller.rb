@@ -8,19 +8,28 @@ class SessionsController < ApplicationController
     email = params[:email]
     password = params[:password]
     user = User.find_by_email(email)
-    if user.nil?
-      render :new
-    else
-      user.password_digest == password
-      session[:user_id] = user.id
-      flash[:notice] = "Welcome back"
+
+    if user.present? && decrypted_password(user.password_digest) == password
+      session[:id] = user.id
+      flash[:notice] = "Welcome back #{user.email}"
       redirect_to root_path
+    else
+      render :new
     end
+
   end
+
 
   def destroy
     session.clear
+    flash[:notice] = "You have logged out."
+
     redirect_to root_path
+  end
+
+  private
+  def decrypted_password(password)
+    BCrypt::Password.new(password)
   end
 
 end
