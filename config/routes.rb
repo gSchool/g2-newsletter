@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get '/logout', to: 'sessions#destroy'
 
-  get '/sign_up', to: 'users#new'
+  get '/users/new', to: 'users#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view
