@@ -1,17 +1,6 @@
-<h1>Newsletter</h1>
-<div class="root_links">
-  <% if @user.nil? %>
-    <%= link_to "Login", login_path %>
-    <%= link_to "Register", sign_up_path %>
+<a href="#Publications">Publications</a>
 
-  <% else %>
-    <a href="/logout">Logout</a>
+<% if session[:user_id] %>
+<h1>My Subscriptions</h1>
+<% end  %>
 
-    <h1>My Subscriptions</h1>
-  <% end %>
-  <a href="#Publications">Publications</a>
-
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, class: name %>
-  <% end %>
-</div>
