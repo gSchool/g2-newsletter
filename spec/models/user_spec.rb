@@ -9,7 +9,10 @@ describe User do
     it 'can create a new user' do
       expect(user).to be_valid
     end
-
+    it 'can create an admin user' do
+      user.admin = true
+      expect(user).to be_valid
+    end
     it 'should not be valid without an email' do
       user.email = nil
       expect(user).to_not be_valid

@@ -12,6 +12,7 @@ module ObjectCreationMethods
         :email => "user#{counter}@gmail.com",
         :password => 'password',
         :password_confirmation => 'password',
+        :admin => false,
       }
     User.new(defaults.merge(attributes))
   end
