@@ -22,17 +22,17 @@
 .errors ul {
   position: absolute;
   top: 0;
-  color: #B00100;
+  color: #FF9900;
   width: 200px;
   margin: 0 auto;
-  margin-top: 5%;
+  margin-top: 7%;
   margin-left: 35%;
   list-style-type: none;
 }
 
-.register_form {
+.form_styling {
   position: absolute;
-  top: 150px;
+  top: 175px;
   margin-top: 1%;
   margin-left: 37%;
 }
@@ -42,11 +42,22 @@
 }
 
 body {
-  background-color: #faf3e6;
+  background-color: #E9E9E9;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #424242;
+  padding-left: 1%;
+  padding-right: 1%;
+
 }
 
 header h1 {
   display: inline-block;
+  color: #FF9900;
 }
 
 ul.secondary-nav {
@@ -54,8 +65,23 @@ ul.secondary-nav {
 
   li {
     display: inline-block;
+    color: #FF9900;
+
   }
+    a {
+      color: white;
+    }
 }
 
+.welcome_flash {
+  font-family: 'Roboto', sans-serif;
+  background-color: #FF9900;
+  font-size: 200%;
+  min-width: 100%;
+  color: white;
+  text-align: center;
+}
 
-
+h1 {
+  padding: 1%;
+}

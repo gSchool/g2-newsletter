@@ -10,7 +10,7 @@ describe ApplicationController do
     end
 
     it "returns the user if user is logged in" do
-    current_user = create_user 
+    current_user = create_user
 
       controller.log_user_in(current_user.id)
       expect(controller.current_user).to eq current_user
