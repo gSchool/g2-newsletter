@@ -2,16 +2,34 @@
 <html>
 <head>
   <title>Newsletter</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,400,700' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header>
-    <!--<div>-->
-      <!--<h1>Newsletter</h1>-->
-    <!--</div>-->
-  </header>
+<header>
+  <h1>Newsletter</h1>
+
+  <ul class="secondary-nav">
+    <% if session[:user_id] %>
+      <li><a href="/logout">Logout</a></li>
+      <li><%= @user.email %></li>
+    <% else %>
+      <li><%= link_to "Login", login_path %></li>
+      <li><%= link_to "Register", users_new_path %></li>
+    <% end %>
+
+  </ul>
+</header>
+
+<div class="welcome_flash">
+  <% flash.each do |name, msg|  %>
+    <%= content_tag :div, msg, class: name  %>
+  <% end %>
+</div>
+
+
 
 <%= yield %>
 

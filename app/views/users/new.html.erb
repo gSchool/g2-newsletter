@@ -1,22 +1,35 @@
 <%= @notice %>
-<%= form_for @user do |f| %>
+<% if @user.errors.present? %>
 
-  <% if @user.errors.present? %>
-    <% @user.errors.full_messages.each do |message| %>
-      <%= message %>
-    <% end %>
-  <% end %>
-
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-
-
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-
-  <%= f.submit :register %>
+  <div class="errors">
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
 <% end %>
+</ul>
+</div>
+<%= form_for @user do |f| %>
+  <table class="form_styling">
+    <tr>
+      <td><%= f.label :email %></td>
+      <td><%= f.text_field :email %></td>
+    </tr>
+
+    <tr>
+      <td><%= f.label :password %></td>
+      <td><%= f.password_field :password %></td>
+    </tr>
+
+    <tr>
+      <td><%= f.label :password_confirmation, "Password Confirmation" %></td>
+      <td><%= f.password_field :password_confirmation %></td>
+    </tr>
+
+    <tr>
+      <td><%= f.submit :register, :value => "Register" %></td>
+      <td></td>
+    </tr>
+<% end %>
+</table>
 

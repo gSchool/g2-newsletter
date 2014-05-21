@@ -7,4 +7,3 @@ feature 'Guest' do
     expect(page).to have_content 'Newsletter'
   end
 end
-
