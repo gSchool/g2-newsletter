@@ -7,11 +7,11 @@ class SessionsController < ApplicationController
   def create
     email = params[:email]
     password = params[:password]
-    user = User.find_by_email(email)
+    @user = User.find_by_email(email)
 
-    if user.present? && user.authenticate(password)
-      session[:user_id] = user.id
-      flash[:notice] = "Welcome back #{user.email}"
+    if @user && @user.authenticate(password)
+      log_user_in(@user)
+      flash[:notice] = "Welcome back #{@user.email}"
       redirect_to root_path
     else
       flash[:notice] = "Email/password incorrect"
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.clear
+    log_user_out
     flash[:notice] = "You have logged out."
 
     redirect_to root_path

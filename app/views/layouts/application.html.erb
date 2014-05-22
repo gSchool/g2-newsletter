@@ -2,9 +2,9 @@
 <html>
 <head>
   <title>Newsletter</title>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all'%>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,400,700' rel='stylesheet' type='text/css'>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -12,11 +12,11 @@
   <h1>Newsletter</h1>
 
   <ul class="secondary-nav">
-    <% if @current_user %>
+    <% if current_user %>
       <li><a href="/logout">Logout</a></li>
-      <li><%= @current_user.email %></li>
+      <li><%= current_user.email %></li>
     <% else %>
-      <li><%= link_to "Login", login_path %></li>
+      <li><%= link_to "Login", new_session_path %></li>
       <li><%= link_to "Register", users_new_path %></li>
     <% end %>
 

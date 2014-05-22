@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
     @user = User.new(:email => email, :password => password, :password_confirmation => password_confirmation)
     if @user.save
-      session[:user_id] = @user.id
+        log_user_in(@user)
       flash[:notice] = "Welcome to the newsletter application"
       redirect_to root_path
     else
