@@ -19,22 +19,16 @@
   margin-top: 15%;
 }
 
-.errors ul {
-  position: absolute;
-  top: 27px;
-  color: #FF9900;
-  width: 200px;
-  margin: 0 auto;
-  margin-top: 7%;
-  margin-left: 35%;
-  list-style-type: none;
-}
-
 .form_styling {
   position: absolute;
-  top: 250px;
-  margin-top: 1%;
+  top: 240px;
   margin-left: 37%;
+  font-size: 1.3em;
+
+  input {
+    height: 22px;
+    font-size: .75em;
+  }
 }
 
 .td {
@@ -52,7 +46,7 @@ header {
   background-color: #424242;
   padding-left: 1%;
   padding-right: 1%;
-
+  margin-bottom: 0;
 }
 
 header h1 {
@@ -70,19 +64,21 @@ ul.secondary-nav {
     padding-top: 10%;
 
   }
-    a {
-      color: white;
-      text-decoration: none;
-    }
+  a {
+    color: white;
+    text-decoration: none;
+  }
 }
 
-.welcome_flash {
+.welcome_flash, .errors ul {
   font-family: 'Roboto', sans-serif;
   background-color: #FF9900;
-  font-size: 200%;
+  font-size: 150%;
   min-width: 100%;
   color: white;
   text-align: center;
+  list-style-type: none;
+  margin-top: 0;
 }
 
 h1 {
