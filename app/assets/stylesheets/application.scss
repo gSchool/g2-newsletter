@@ -62,12 +62,17 @@ ul.secondary-nav {
     display: inline-block;
     color: #FF9900;
     padding-top: 10%;
-
   }
   a {
     color: white;
     text-decoration: none;
+    padding-left: 10%;
   }
+  a:hover {
+    color: #a2a2a2;
+    text-decoration: underline;
+  }
+
 }
 
 .welcome_flash, .errors ul {
