@@ -62,14 +62,17 @@ header h1 {
 
 ul.secondary-nav {
   float: right;
+  padding-top: 1%;
 
   li {
     display: inline-block;
     color: #FF9900;
+    padding-top: 10%;
 
   }
     a {
       color: white;
+      text-decoration: none;
     }
 }
 
@@ -84,4 +87,17 @@ ul.secondary-nav {
 
 h1 {
   padding: 1%;
+  text-align: center;
+}
+
+h2 {
+  padding: 1%;
+  padding-left: 3%;
+}
+
+p {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 3%;
+  padding-right: 3%;
 }
