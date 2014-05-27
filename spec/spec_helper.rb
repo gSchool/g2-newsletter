@@ -15,4 +15,6 @@ RSpec.configure do |config|
   config.include ObjectCreationMethods, type: :model
   config.include ObjectCreationMethods, type: :controller
   config.include ObjectCreationMethods, type: :feature
+  config.include FeatureMethods, type: :feature
+
 end
