@@ -7,6 +7,7 @@ feature 'Registering an account' do
     fill_in 'user[email]', :with => 'email@email.com'
     fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
+    check 'terms'
     click_button 'Register'
     expect(page).to have_content 'Welcome to the newsletter application'
     expect(page).to have_content 'email@email.com'
@@ -19,6 +20,7 @@ feature 'Registering an account' do
     fill_in 'user[email]', :with => 'email@email.com'
     fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
+    check 'terms'
     click_button 'Register'
     expect(page).to have_content 'Welcome to the newsletter application'
     expect(page).to have_content 'email@email.com'
@@ -33,6 +35,7 @@ feature 'Registering an account' do
     fill_in 'user[email]', :with => '         '
     fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
+    check 'terms'
     click_button 'Register'
     expect(page).to have_content "must be a valid email address"
   end
@@ -73,6 +76,7 @@ feature 'Registering an account' do
     fill_in 'user[email]', :with => 'email@example.com'
     fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
+    check 'terms'
     click_button 'Register'
     click_on 'Logout'
     visit '/'
@@ -80,6 +84,7 @@ feature 'Registering an account' do
     fill_in 'user[email]', :with => 'email@example.com'
     fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
+    check 'terms'
     click_button 'Register'
     expect(page).to have_content "Email has already been taken"
   end
@@ -90,7 +95,24 @@ feature 'Registering an account' do
     fill_in 'user[email]', :with => 'example'
     fill_in 'user[password]', :with => 'coolcool'
     fill_in 'user[password_confirmation]', :with => 'coolcool'
+    check 'terms'
     click_button 'Register'
     expect(page).to have_content "must be a valid email address"
+  end
+
+  scenario 'user can see a link to terms of service' do
+    visit '/users/new'
+    click_on 'Terms of Service'
+    expect(page).to have_content('Welcome to gSchool Newsletter, a West End Pearl corporation')
+  end
+
+  scenario 'user sees error when signing up without agreeing to Terms of Service' do
+    visit '/'
+    click_on 'Register'
+    fill_in 'user[email]', with: 'paul@email.com'
+    fill_in 'user[password]', with: 'password'
+    fill_in 'user[password_confirmation]', with: 'password'
+    click_button 'Register'
+    expect(page).to have_content("must be accepted")
   end
 end
