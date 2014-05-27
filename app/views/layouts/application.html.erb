@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Newsletter</title>
-  <%= stylesheet_link_tag 'application', media: 'all'%>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,400,700' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
@@ -13,26 +13,34 @@
 
   <ul class="secondary-nav">
     <% if current_user %>
-      <li><%= link_to "All Publications", publications_path %></li>
-      <li><a href="/logout">Logout</a></li>
-      <li><%= current_user.email %></li>
-    <% else %>
-      <li><%= link_to "Login", new_session_path %></li>
-      <li><%= link_to "Register", users_new_path %></li>
+      <li>|<%= link_to "All Publications", publications_path %></li>
+      <% if current_user.admin? %>
+        <li>|<%= link_to "Add Publication", new_publication_path %></li>
+        <% end %>
+        <li>|<%= link_to "Logout", logout_path %>|</li>
+      <% else %>
+        <li>|<%= link_to "Login", new_session_path %></li>
+        <li>|<%= link_to "Register", users_new_path %></li>
+      <% end %>
+      <br>
+      <br>
+    <% if current_user %>
+      <li class="user_name"><%= current_user.email %></li>
     <% end %>
 
-  </ul>
-</header>
+      </ul>
 
-<div class="welcome_flash">
-  <% flash.each do |name, msg|  %>
-    <%= content_tag :div, msg, class: name  %>
-  <% end %>
-</div>
+      </header>
+
+      <div class="welcome_flash">
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, class: name %>
+        <% end %>
+      </div>
 
 
 
-<%= yield %>
+      <%= yield %>
 
-</body>
-</html>
+      </body>
+      </html>

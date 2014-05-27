@@ -6,13 +6,11 @@
     <h2 class="publication_title">Publications:</h2>
     <table class="publication_list">
       <% @publications.each do |publication| %>
-        <tr style="color: <%= cycle('black', 'white') -%>">
+        <tr>
           <td class="publication_item"> <%= link_to publication.name, publication %></td>
           <td class="publication_button"> <%= link_to 'More Info', publication %></td>
         </tr>
       <% end %>
-        </table>
-        </div>
-
-
+    </table>
+  </div>
 <% end %>

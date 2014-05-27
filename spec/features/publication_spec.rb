@@ -28,7 +28,7 @@ feature 'Admin' do
     fill_in 'password', :with => 'password'
     click_on 'login'
     expect(page).to have_content 'Welcome back non_admin@email.com'
-    expect(page).to have_no_content 'Manage Publications'
+
   end
   feature 'Guest' do
     scenario 'can view the show page for a publication by clicking on it' do
