@@ -14,4 +14,5 @@ RSpec.configure do |config|
   config.order = "random"
   config.include ObjectCreationMethods, type: :model
   config.include ObjectCreationMethods, type: :controller
+  config.include ObjectCreationMethods, type: :feature
 end

@@ -17,6 +17,23 @@ module ObjectCreationMethods
     User.new(defaults.merge(attributes))
   end
 
+
+  def create_publication(attributes = {})
+    publication = new_publication(attributes)
+    publication.save!
+    publication
+  end
+
+  def new_publication(attributes = {})
+    defaults =
+    {
+      :name => "Name#{counter}",
+      :description => 'Description'
+
+    }
+    Publication.new(defaults.merge(attributes))
+  end
+
   def counter
     @counter ||= -1
     @counter += 1
