@@ -1,5 +1,17 @@
-<h1>Manage Publications</h1>
-<li><%= link_to "Add Publication", new_publication_path %> </li>
-<% @publications.each do |publication| %>
- <%= publication.name %>
+<% if current_user.admin? %>
+  <h1>Manage Publications:</h1>
+<% else %>
+<h1>Publications:</h1>
 <% end %>
+
+<div class="publications_show">
+
+    <table class="publication_list">
+      <% @publications.each do |publication| %>
+        <tr>
+          <td> <%= link_to publication.name, publication %></td>
+        </tr>
+      <% end %>
+    </table>
+
+</div>

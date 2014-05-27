@@ -18,6 +18,17 @@
   text-align: center;
   margin-top: 15%;
 }
+.publication_show {
+  margin: auto;
+  text-align: left;
+  table {
+    margin: auto;
+    padding-top: 50px;
+  }
+  td {
+    padding-left: 30px;
+  }
+}
 
 .form_styling {
   position: absolute;
@@ -61,17 +72,25 @@ ul.secondary-nav {
   li {
     display: inline-block;
     color: #FF9900;
-    padding-top: 10%;
+    padding-top: 0%;
+
   }
   a {
     color: white;
     text-decoration: none;
-    padding-left: 10%;
+    padding-left: 0%;
   }
   a:hover {
     color: #a2a2a2;
     text-decoration: underline;
   }
+
+}
+
+.user_name {
+  float: right;
+  color: #FF9900;
+  padding-right: 7px;
 
 }
 
@@ -103,3 +122,42 @@ p {
   padding-left: 3%;
   padding-right: 3%;
 }
+
+
+
+
+
+
+.publication_list {
+  margin: auto;
+  font-size: 25px;
+  a {
+    color: #424242;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #FF9900;
+    text-decoration: underline;
+  }
+  tr:nth-child(odd){
+    background-color: whitesmoke;
+
+  }
+  tr:nth-child(even){
+    background-color: white;
+  }
+  .publication_button {
+    padding-left: 10px;
+    padding-right: 20px;
+    font-size: 15px;
+  }
+  .publication_item {
+    padding-left: 10px;
+    padding-right: 50px;
+  }
+}
+.publication_title {
+    text-align: center;
+
+}
+

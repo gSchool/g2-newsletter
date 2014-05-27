@@ -1,3 +1,12 @@
+<% if @publication.errors.present? %>
+  <div class="errors">
+    <ul>
+      <% @publication.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul> </div>
+<% end %>
+
 <%= form_for @publication do |f| %>
   <table class="form_styling">
     <tr>
@@ -11,7 +20,7 @@
     </tr>
     <tr>
       <td></td>
-      <td><%= f.submit :add_publication, :value => "Add Publication" %></td>
+      <td><%= f.submit :add_publication, :value => "Create Publication" %></td>
     </tr>
 <% end %>
 </table>
