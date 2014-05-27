@@ -1,31 +1,25 @@
 require 'spec_helper'
 
-
 feature 'Login' do
-  scenario 'a registered user can login with the credentials they supplied' do
+  scenario 'a registered user can login' do
     visit '/'
+
     click_on 'Register'
-    fill_in 'user[email]', :with => 'email@email.com'
+    fill_in 'user[email]', :with => 'paul@paul.com'
     fill_in 'user[password]', :with => 'password'
     fill_in 'user[password_confirmation]', :with => 'password'
+    check 'terms'
     click_button 'Register'
+    expect(page).to have_content 'Welcome to the newsletter application'
     click_on 'Logout'
-    visit '/'
+    expect(page).to have_content 'You have logged out.'
+
     click_on 'Login'
-    fill_in 'email', :with => 'email@email.com'
+    fill_in 'email', :with => 'paul@paul.com'
     fill_in 'password', :with => 'password'
-    click_on 'login'
-    expect(page).to have_content "Welcome back"
-  end
-  scenario 'a user can logout' do
-    visit '/'
-    click_on 'Register'
-    fill_in 'user[email]', :with => 'email@email.com'
-    fill_in 'user[password]', :with => 'password'
-    fill_in 'user[password_confirmation]', :with => 'password'
-    click_button 'Register'
+    click_button 'login'
+    expect(page).to have_content 'Welcome back'
     click_on 'Logout'
-    expect(page).to_not have_content 'Welcome to the newsletter application'
     expect(page).to have_content 'You have logged out.'
   end
 end

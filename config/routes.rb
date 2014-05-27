@@ -8,11 +8,11 @@ Rails.application.routes.draw do
   resources :sessions, :only => [:destroy, :create, :new]
   resources :publications
 
-   # get '/login', to: 'sessions#new'
-
   get '/logout', to: 'sessions#destroy'
 
   get '/users/new', to: 'users#new'
+
+   get '/terms', to: 'terms#index', :as => 'terms'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view
