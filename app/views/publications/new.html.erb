@@ -1,0 +1,17 @@
+<%= form_for @publication do |f| %>
+  <table class="form_styling">
+    <tr>
+      <td><%= f.label :name %></td>
+      <td><%= f.text_field :name %></td>
+    </tr>
+
+    <tr>
+      <td><%= f.label :description %></td>
+      <td><%= f.text_field :description %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= f.submit :add_publication, :value => "Add Publication" %></td>
+    </tr>
+<% end %>
+</table>
