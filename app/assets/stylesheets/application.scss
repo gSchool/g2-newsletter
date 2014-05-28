@@ -32,7 +32,7 @@
 
 .form_styling {
   position: absolute;
-  top: 247px;
+  top: 275px;
   margin-left: 37%;
   font-size: 1.3em;
 
@@ -159,5 +159,9 @@ p {
 .publication_title {
     text-align: center;
 
+}
+
+.terms_of_service .field_with_errors {
+  display: inline;
 }
 

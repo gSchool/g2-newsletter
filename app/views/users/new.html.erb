@@ -27,10 +27,12 @@
     </tr>
 
     <tr>
-      <td> I agree to <%= link_to 'Terms of Service', terms_path %>&nbsp;
-        <%= f.check_box :terms_of_service, id: 'terms' %></td>
-      <td><%= f.submit :register, :value => "Register" %></td>
+        <td class="terms_of_service"> I agree to <%= link_to 'Terms of Service', terms_path %>&nbsp;
+          <%= f.check_box :terms_of_service, id: 'terms' %></td>
     </tr>
+  <tr>
+    <td><%= f.submit :register, :value => "Register" %></td>
+  </tr>
 <% end %>
 </table>
 
