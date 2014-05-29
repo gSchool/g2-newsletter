@@ -5,11 +5,9 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 8, message: "must be 8 or more characters", if: 'password.present?'}
   validates :terms_of_service, :acceptance => true
 
-  def update_password(user,new_password, confirmation)
-    @user = user
-    @user.password_digest = nil
-    @user.update_attributes(:password => new_password, :password_confirmation => confirmation)
-    @user.save
+  def update_password(new_password, confirmation)
+   self.password_digest = nil
+    update_attributes(:password => new_password, :password_confirmation => confirmation)
   end
 end
 

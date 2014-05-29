@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
     session[:user_id] = user.id
   end
 
+  helper_method :logged_in?
+
   def logged_in?
     !!session[:user_id]
   end

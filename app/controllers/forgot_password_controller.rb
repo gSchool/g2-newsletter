@@ -16,14 +16,14 @@ class ForgotPasswordController < ApplicationController
       redirect_to '/sessions/new'
     else
       @user = User.new
-      flash[:notice] = "fuck you"
+      flash[:notice] = "User not found"
 
       render :forgot_password
     end
   end
 
   def password_reset
-    token = params.first[0]
+    token = params[:reset_token]
     @user = User.find_by_password_reset_token(token)
     if @user.nil?
       flash[:error] = 'You have not requested a password reset.'
@@ -46,13 +46,13 @@ class ForgotPasswordController < ApplicationController
     confirmation = params[:user][:new_password_confirmation]
     @user = User.find_by_email(email)
 
-   if @user.update_password(@user, new_password, confirmation)
+    if @user.update_attributes(password: new_password.presence, password_confirmation: confirmation.presence)
       flash[:notice] = 'Your password has been reset. Please sign in with your new password.'
       redirect_to '/sessions/new'
-   else
-     render :password_reset
+    else
+      render :password_reset
     end
-end
+  end
 
 end
 

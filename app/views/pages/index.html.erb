@@ -1,7 +1,6 @@
-<% if current_user %>
+<% if logged_in? %>
   <h1>My Subscriptions</h1>
-<% end %>
-<% if current_user.nil? %>
+<% else %>
   <div>
     <h2 class="publication_title">Publications:</h2>
     <table class="publication_list">
