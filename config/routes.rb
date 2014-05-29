@@ -4,13 +4,22 @@ Rails.application.routes.draw do
 
    root 'pages#index'
 
-  resources :users, :only => [:create, :destroy]
+  resources :users, :only => [:create, :destroy, :new]
   resources :sessions, :only => [:destroy, :create, :new]
   resources :publications
+  #resources :forgot_password
+
+   get "forgot_password" => "forgot_password#forgot_password"
+   put "forgot_password" => "forgot_password#send_password"
+
+   get "password_reset" => "forgot_password#password_reset"
+   put "password_reset" => "forgot_password#change_password"
+
+
 
   get '/logout', to: 'sessions#destroy'
 
-  get '/users/new', to: 'users#new'
+  get '/users/forgot_password', to: 'users#forgot_password'
 
    get '/terms', to: 'terms#index', :as => 'terms'
 
