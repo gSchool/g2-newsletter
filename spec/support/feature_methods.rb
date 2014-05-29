@@ -16,6 +16,20 @@ module FeatureMethods
     fill_in 'user[password_confirmation]', with: attributes[:password_confirmation]
     check 'terms'
     click_button 'Register'
+  end
 
+  def login_user(updated_attributes = {})
+    default_attributes = {
+      :email => 'email@email.com',
+      :password => 'password'
+    }
+
+    attributes = default_attributes.merge(updated_attributes)
+
+    visit '/'
+    click_on 'Login'
+    fill_in 'email', with: attributes[:email]
+    fill_in 'password', with: attributes[:password]
+    click_button 'login'
   end
 end
