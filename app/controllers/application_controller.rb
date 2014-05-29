@@ -26,12 +26,16 @@ class ApplicationController < ActionController::Base
   helper_method :validate_session
 
   def validate_session
-    if session[:expire_time]
+    if logged_in?
       if session[:expire_time] < Time.now
         log_user_out
         flash[:notice] = "Your session has expired"
         redirect_to new_session_path
       end
     end
+  end
+
+  def logged_in?
+    !!session[:user_id]
   end
 end

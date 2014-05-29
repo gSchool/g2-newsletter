@@ -2,11 +2,11 @@
   <table>
     <tr>
       <th>Publication name:</th>
-      <td><%= @publication.name %></td>
+      <td><%= simple_format(@publication.name) %></td>
     </tr>
     <tr>
       <th>Description:</th>
-      <td><%= @publication.description %></td>
+      <td><%= simple_format(@publication.description) %></td>
     </tr>
     <tr>
       <th>Articles:</th>
