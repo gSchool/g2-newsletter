@@ -9,7 +9,7 @@ class Notifier < ActionMailer::Base
 
   def forgot_password(user)
     @user = user
-    @password_reset_url = 'http://localhost:3000/password_reset?' + "reset_token=#{@user.password_reset_token}"
+    @password_reset_url = "#{root_path}/password_reset?" + "reset_token=#{@user.password_reset_token}"
     mail(:to => user.email, :subject => 'Password Reset Instructions.')
   end
 end
