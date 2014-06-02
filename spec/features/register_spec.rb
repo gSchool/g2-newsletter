@@ -41,8 +41,7 @@ feature 'Registering an account' do
   end
 
   scenario 'user can see the terms of service' do
-    visit '/users/new'
-    click_on 'Terms of Service'
+    visit '/terms'
     expect(page).to have_content('Welcome to gSchool Newsletter, a West End Pearl corporation')
   end
 

@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
     @user = User.new(:email => email, :password => password, :password_confirmation => password_confirmation, :terms_of_service => terms_of_service )
     if @user.save
+        Notifier.welcome_email(@user).deliver
         log_user_in(@user)
       flash[:notice] = "Welcome to the newsletter application"
       redirect_to root_path
@@ -18,4 +19,5 @@ class UsersController < ApplicationController
       render :new
     end
   end
+
 end
