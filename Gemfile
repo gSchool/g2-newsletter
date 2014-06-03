@@ -14,12 +14,13 @@ gem 'bcrypt', '~>3.1.7'
 gem 'i18n', ' 0.6.9'
 
 
+
 group :production do
   gem 'rails_12factor', '~>0.0.2'
 end
 
 group :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '2.14.2'
   gem 'capybara'
 end
 
