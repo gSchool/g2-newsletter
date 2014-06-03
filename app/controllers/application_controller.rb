@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def log_user_in(user)
     session[:user_id] = user.id
-    session[:expire_time] = Time.now + (60 * 60 * 24)
+    session[:expire_time] = 24.hours.from_now
   end
 
   helper_method :current_user
