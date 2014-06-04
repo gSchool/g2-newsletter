@@ -1,4 +1,4 @@
-class PublicationsController < ApplicationController
+class PublicationsController < SecureController
   def index
     @publications = Publication.all
   end
