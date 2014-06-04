@@ -12,14 +12,9 @@ class ForgotPasswordController < ApplicationController
       user.password_expires_after = 24.hours.from_now
       user.save
       Notifier.forgot_password(user).deliver
-      flash[:notice] = "Email with instructions on reseting your password has been sent"
-      redirect_to '/sessions/new'
-    else
-      @user = User.new
-      flash[:notice] = "User not found"
-
-      render :forgot_password
     end
+    flash[:notice] = "Email with instructions on reseting your password has been sent"
+    redirect_to '/sessions/new'
   end
 
   def password_reset
