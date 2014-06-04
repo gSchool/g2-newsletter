@@ -2,19 +2,23 @@ class ForgotPasswordController < ApplicationController
 
   def forgot_password
     @user = User.new
-
   end
 
   def send_password
-    user = User.find_by_email(params[:user][:email])
-    if user
-      user.password_reset_token = SecureRandom.urlsafe_base64
-      user.password_expires_after = 24.hours.from_now
-      user.save
-      Notifier.forgot_password(user).deliver
+    if valid_email?(params[:user][:email])
+      user = User.find_by_email(params[:user][:email])
+      if user
+        user.password_reset_token = SecureRandom.urlsafe_base64
+        user.password_expires_after = 24.hours.from_now
+        user.save
+        Notifier.forgot_password(user).deliver
+      end
+      flash[:notice] = "Email with instructions on reseting your password has been sent"
+      render '/sessions/new'
+    else
+      flash[:notice] = "Please enter a valid email address"
+      redirect_to forgot_password_path
     end
-    flash[:notice] = "Email with instructions on reseting your password has been sent"
-    redirect_to '/sessions/new'
   end
 
   def password_reset
@@ -23,17 +27,15 @@ class ForgotPasswordController < ApplicationController
     if @user.nil?
       flash[:error] = 'You have not requested a password reset.'
       redirect_to :root
-      return
     end
 
     if @user.password_expires_after < DateTime.now
       clear_password_reset(@user)
       @user.save
       flash[:error] = 'Password reset has expired. Please request a new password reset.'
-      redirect_to :forgot_password
+      redirect_to forgot_password_path
     end
   end
-
 
   def change_password
     email = params[:user][:email]
@@ -49,10 +51,9 @@ class ForgotPasswordController < ApplicationController
     end
   end
 
+  private
+
+  def valid_email?(email)
+    !!/([a-z\d._-]+)@([a-z\d._-]{2,}).([a-z\d._-]{3,})/i.match(email)
+  end
 end
-
-
-
-
-
-
