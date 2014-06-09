@@ -7,9 +7,9 @@ class Notifier < ActionMailer::Base
           :subject => 'Thank you for signing up!' )
   end
 
-  def forgot_password(user)
+  def forgot_password(user, hmac_token)
     @user = user
-    #@password_reset_url = "#{root_url}password_reset?" + "reset_token=#{@user.password_reset_token}"
+    @password_reset_token = hmac_token
     mail(:to => user.email, :subject => 'Password Reset Instructions.')
   end
 end
