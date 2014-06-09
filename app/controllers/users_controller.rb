@@ -4,15 +4,10 @@ class UsersController < SecureController
   end
 
   def create
-    email = params[:user][:email]
-    password = params[:user][:password]
-    password_confirmation = params[:user][:password_confirmation]
-    terms_of_service = params[:user][:terms_of_service]
-
-    @user = User.new(:email => email, :password => password, :password_confirmation => password_confirmation, :terms_of_service => terms_of_service )
+    @user = User.new(allowed_parameters)
     if @user.save
-        Notifier.welcome_email(@user).deliver
-        log_user_in(@user)
+      Notifier.welcome_email(@user).deliver
+      log_user_in(@user)
       flash[:notice] = "Welcome to the newsletter application"
       redirect_to root_path
     else
@@ -20,4 +15,15 @@ class UsersController < SecureController
     end
   end
 
+  def allowed_parameters
+    params.require(:user).permit(
+        :email,
+        :password,
+        :password_confirmation,
+        :admin,
+        :password_reset_token,
+        :password_expires_after,
+        :terms_of_service
+    )
+  end
 end

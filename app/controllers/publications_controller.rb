@@ -8,9 +8,7 @@ class PublicationsController < SecureController
   end
 
   def create
-    name = params[:publication][:name]
-    description = params[:publication][:description]
-    @publication = Publication.create(:name => name, :description => description)
+    @publication = Publication.create(allowed_parameters)
     if @publication.save
       flash[:notice] = "Publication Created"
       redirect_to publications_path
@@ -18,7 +16,12 @@ class PublicationsController < SecureController
       render :new
     end
   end
+
   def show
     @publication = Publication.find(params[:id])
+  end
+
+  def allowed_parameters
+    params.require(:publication).permit(:name, :description)
   end
 end
