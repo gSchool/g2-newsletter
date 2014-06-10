@@ -1,6 +1,11 @@
-class PagesController < SecureController
+class PagesController < ApplicationController
 
   def index
-    @publications = Publication.all
+    if logged_in?
+      redirect_to subscriptions_path
+    else
+      @publications = Publication.all
+      render
+    end
   end
 end
