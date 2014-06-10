@@ -13,22 +13,22 @@
  *= require_tree .
  *= require_self
  */
+@import 'layout';
 
 .root_links {
   text-align: center;
   margin-top: 15%;
 }
+
 .form_title {
   text-align: center;
   font-size: 30px;
-
-
 }
+
 .reset_password_title {
   text-align: center;
-
-
 }
+
 .publication_show {
   margin: auto;
   width: 960px;
@@ -47,7 +47,6 @@
   top: 275px;
   margin-left: 37%;
   font-size: 1.3em;
-
   input {
     height: 22px;
     font-size: .75em;
@@ -58,25 +57,6 @@
   width: 1em;
 }
 
-body {
-  background-color: #E9E9E9;
-  font-family: 'Open Sans', sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-header {
-  background-color: #424242;
-  padding-left: 1%;
-  padding-right: 1%;
-  margin-bottom: 0;
-}
-
-header h1 {
-  display: inline-block;
-  color: #FF9900;
-}
-
 ul.secondary-nav {
   float: right;
   padding-top: 1%;
@@ -85,7 +65,6 @@ ul.secondary-nav {
     display: inline-block;
     color: #FF9900;
     padding-top: 0%;
-
   }
   a {
     color: white;
@@ -96,14 +75,12 @@ ul.secondary-nav {
     color: #a2a2a2;
     text-decoration: underline;
   }
-
 }
 
 .user_name {
   float: right;
   color: #FF9900;
   padding-right: 7px;
-
 }
 
 .welcome_flash, .errors ul {
@@ -118,28 +95,6 @@ ul.secondary-nav {
   padding-bottom: .6%;
 }
 
-h1 {
-  padding: 1%;
-  text-align: center;
-}
-
-h2 {
-  padding: 1%;
-  padding-left: 3%;
-}
-
-p {
-  padding-top: 1%;
-  padding-bottom: 1%;
-  padding-left: 3%;
-  padding-right: 3%;
-}
-
-
-
-
-
-
 .publication_list {
   margin: auto;
   font-size: 25px;
@@ -151,11 +106,11 @@ p {
     color: #FF9900;
     text-decoration: underline;
   }
-  tr:nth-child(odd){
+  tr:nth-child(odd) {
     background-color: whitesmoke;
 
   }
-  tr:nth-child(even){
+  tr:nth-child(even) {
     background-color: white;
   }
   .publication_button {
@@ -168,9 +123,9 @@ p {
     padding-right: 50px;
   }
 }
-.publication_title {
-    text-align: center;
 
+.publication_title {
+  text-align: center;
 }
 
 .terms_of_service .field_with_errors {
