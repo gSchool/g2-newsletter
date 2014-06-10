@@ -37,6 +37,7 @@ feature 'User' do
   end
 
   scenario 'A user can reset their password' do
+    NotifierEmailJob.new.async.perform(@user, HmacToken.password_reset(@user))
     mail_sent = ActionMailer::Base.deliveries.length
     visit '/'
     click_on 'Login'

@@ -7,7 +7,7 @@ class ForgotPasswordController < ApplicationController
   def send_password
     if valid_email?(params[:user][:email])
       user = User.find_by_email(params[:user][:email])
-        Notifier.forgot_password(user, HmacToken.password_reset(user)).deliver if user.present?
+      NotifierEmailJob.new.async.perform(user, HmacToken.password_reset(user)) if user.present?
         flash[:notice] = "Email with instructions on reseting your password has been sent"
         render '/sessions/new'
     else
