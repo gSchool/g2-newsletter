@@ -9,10 +9,14 @@ class UsersController < SecureController
       Notifier.welcome_email(@user).deliver
       log_user_in(@user)
       flash[:notice] = "Welcome to the newsletter application"
-      redirect_to root_path
+      redirect_to @user
     else
       render :new
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   def allowed_parameters
