@@ -12,7 +12,6 @@ feature 'Login' do
   end
 
   scenario 'User can see a list of publications they are subscribed to' do
-    visit root_path
     register_user
     expect(page).to have_link 'My Subscriptions'
   end

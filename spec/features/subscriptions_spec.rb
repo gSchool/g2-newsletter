@@ -31,4 +31,17 @@ feature 'manage subscriptions' do
     click_on 'All Publications'
     expect(page).to have_content 'Subscribed'
   end
+
+  scenario 'user can see a more info link next to their subscriptions' do
+    visit '/'
+    click_on 'Login'
+    fill_in 'email', :with => 'non_admin@email.com'
+    fill_in 'password', :with => 'password'
+    click_on 'login'
+    click_on 'All Publications'
+    click_on 'Subscribe'
+    expect(page).to have_content 'My Subscriptions'
+    expect(page).to have_content 'Test Publication'
+    expect(page).to have_link 'More info'
+  end
 end

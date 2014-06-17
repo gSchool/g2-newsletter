@@ -1,1 +1,12 @@
-<%= @user.subscriptions %>
+<h1>My Subscriptions</h1>
+<div class="publication_show">
+  <table class="publication_list">
+    <% @user.subscriptions.each do |subscription| %>
+      <tr>
+        <td class="subscription_item"> <%= subscription.publication.name %></td>
+        <td class="subscription_button"> <%= link_to "More info", subscription.publication %></td>
+      </tr>
+    <% end %>
+  </table>
+
+</div>
