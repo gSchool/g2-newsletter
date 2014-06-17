@@ -54,4 +54,11 @@ feature 'Registering an account' do
     click_button 'Register'
     expect(page).to have_content("must be accepted")
   end
+
+  scenario 'A user receives an email after registering' do
+    mail_sent = ActionMailer::Base.deliveries.length
+    register_user
+
+    expect(ActionMailer::Base.deliveries.length).to eq (mail_sent + 1)
+  end
 end

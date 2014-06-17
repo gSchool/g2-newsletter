@@ -6,7 +6,7 @@ class UsersController < SecureController
   def create
     @user = User.new(allowed_parameters)
     if @user.save
-      Notifier.welcome_email(@user).deliver
+      NotifierEmailJob.new.async.welcome(@user)
       log_user_in(@user)
       flash[:notice] = "Welcome to the newsletter application"
       redirect_to @user
