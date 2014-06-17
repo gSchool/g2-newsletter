@@ -1,4 +1,5 @@
 class Publication < ActiveRecord::Base
-validates :name, :presence => true, :uniqueness => true
-validates :description, :presence => true
+  has_many :subscriptions
+  validates :name, :presence => true, :uniqueness => true
+  validates :description, :presence => true
 end

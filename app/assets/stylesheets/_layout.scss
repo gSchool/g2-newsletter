@@ -5,6 +5,11 @@ body {
   padding: 0;
 }
 
+main {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
 h1 {
   padding: 1%;
   text-align: center;
@@ -33,4 +38,3 @@ header h1 {
   display: inline-block;
   color: #FF9900;
 }
-

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :subscriptions
   has_secure_password
   validates :email, :presence => true, :uniqueness => true
   validates :email, format: {with:/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,3}/, message: "must be a valid email address" }

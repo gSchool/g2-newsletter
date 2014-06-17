@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   resources :users, :only => [:create, :destroy, :new]
   resources :sessions, :only => [:destroy, :create, :new]
   resources :publications
-  #resources :forgot_password
+  resources :subscriptions, :only => [:index, :create]
+
+   #resources :forgot_password
 
    get "forgot_password" => "forgot_password#forgot_password"
    put "forgot_password" => "forgot_password#send_password"
@@ -18,10 +20,8 @@ Rails.application.routes.draw do
 
 
   get '/logout', to: 'sessions#destroy'
-
   get '/users/forgot_password', to: 'users#forgot_password'
-
-   get '/terms', to: 'terms#index', :as => 'terms'
+  get '/terms', to: 'terms#index', :as => 'terms'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view

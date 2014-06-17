@@ -1,0 +1,57 @@
+.publication_list, #subscriptions {
+  min-width: 400px;
+  margin: auto;
+  font-size: 1.2em;
+  a {
+    color: #424242;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #FF9900;
+    text-decoration: underline;
+  }
+  tr:nth-child(odd) {
+    background-color: whitesmoke;
+  }
+  tr:nth-child(even) {
+    background-color: white;
+  }
+  th {
+    padding: .5em;
+    background-color: #FF9900;
+  }
+  td {
+    padding: .5em;
+  }
+  .publication_button {
+    font-size: .8em;
+    text-align: center;
+  }
+  .subscribe_button {
+    text-align: center;
+    input {
+      font-size: 1em !important;
+      padding: .3em .5em;
+      background-color: #ff9900;
+      color: #ffffff;
+      border-radius: 3px;
+      border-top: 1px solid #FFAA27;
+      border-bottom: 1px solid #9F5300;
+      border-left: 1px solid #FFAA27;
+      border-right: 1px solid #9F5300;
+      &:hover {
+        background-color: #ffb50a;
+      }
+    }
+  }
+}
+.publication_show {
+  table {
+    margin: 0 auto;
+    min-width: 500px;
+    padding-top: 50px;
+  }
+  td {
+    padding-left: 30px;
+  }
+}

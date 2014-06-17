@@ -17,7 +17,6 @@ module ObjectCreationMethods
     User.new(defaults.merge(attributes))
   end
 
-
   def create_publication(attributes = {})
     publication = new_publication(attributes)
     publication.save!
@@ -32,6 +31,10 @@ module ObjectCreationMethods
 
     }
     Publication.new(defaults.merge(attributes))
+  end
+
+  def create_subscription(user_id, publication_id)
+    Subscription.create(user_id: user_id, publication_id: publication_id)
   end
 
   def counter

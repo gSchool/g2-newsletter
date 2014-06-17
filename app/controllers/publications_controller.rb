@@ -1,6 +1,7 @@
 class PublicationsController < SecureController
   def index
     @publications = Publication.all
+    @user_subscriptions = current_user.subscriptions.map{ |sub| sub.publication_id}
   end
 
   def new
@@ -8,7 +9,7 @@ class PublicationsController < SecureController
   end
 
   def create
-    @publication = Publication.create(allowed_parameters)
+    @publication = Publication.new(allowed_parameters)
     if @publication.save
       flash[:notice] = "Publication Created"
       redirect_to publications_path
