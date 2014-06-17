@@ -1,12 +1,22 @@
 <div class="publication_show">
+  <%= link_to 'Add article', new_publication_article_path(@publication.id) %>
   <table>
     <tr>
       <th>Publication name:</th>
-      <td><%= simple_format(@publication.name) %></td>
+      <th>Description:</th>
+      <th>Articles</th>
     </tr>
     <tr>
-      <th>Description:</th>
+      <td><%= simple_format(@publication.name) %></td>
       <td><%= simple_format(@publication.description) %></td>
+      <td>
+        <% @articles.each do |article| %>
+          <%= article.title %>
+          <br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
     </tr>
   </table>
 </div>

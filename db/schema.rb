@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610225623) do
+ActiveRecord::Schema.define(version: 20140617205907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "publication_id"
+  end
+
+  add_index "articles", ["publication_id"], name: "publication_id", using: :btree
 
   create_table "publications", force: true do |t|
     t.string "name"

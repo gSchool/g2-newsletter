@@ -20,6 +20,7 @@ class PublicationsController < SecureController
 
   def show
     @publication = Publication.find(params[:id])
+    @articles = @publication.articles
   end
 
   def allowed_parameters
