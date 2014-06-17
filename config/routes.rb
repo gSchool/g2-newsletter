@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
    root 'pages#index'
 
-  resources :users, :only => [:create, :destroy, :new]
+  resources :users, :only => [:create, :destroy, :new, :show]
   resources :sessions, :only => [:destroy, :create, :new]
   resources :publications
   resources :subscriptions, :only => [:index, :create]
