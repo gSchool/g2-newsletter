@@ -5,3 +5,17 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+@counter ||= -1
+
+10.times do |i|
+  defaults =
+    {
+      :name => "Name#{@counter}",
+      :description => 'Description'
+
+    }
+  Publication.create!(defaults)
+  @counter += 1
+end

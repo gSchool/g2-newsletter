@@ -11,6 +11,16 @@
       <tr>
         <td class="publication_item"> <%= link_to publication.name, publication %></td>
         <td class="publication_button"> <%= link_to "More info", publication %></td>
+        <td class="subscribe_button">
+          <% if !@user_subscriptions.include?(publication.id) %>
+            <%= form_tag subscriptions_path, method: :post do %>
+              <%= hidden_field_tag :publication_id, publication.id %>
+              <%= submit_tag "Subscribe" %>
+            <% end %>
+          <% else %>
+            Subscribed
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </table>

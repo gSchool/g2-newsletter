@@ -14,6 +14,7 @@
  *= require_self
  */
 @import 'layout';
+@import 'tables';
 
 .root_links {
   text-align: center;
@@ -27,19 +28,6 @@
 
 .reset_password_title {
   text-align: center;
-}
-
-.publication_show {
-  margin: auto;
-  width: 960px;
-  text-align: left;
-  table {
-    margin: auto;
-    padding-top: 50px;
-  }
-  td {
-    padding-left: 30px;
-  }
 }
 
 .form_styling {
@@ -95,35 +83,6 @@ ul.secondary-nav {
   padding-bottom: .6%;
 }
 
-.publication_list {
-  margin: auto;
-  font-size: 25px;
-  a {
-    color: #424242;
-    text-decoration: none;
-  }
-  a:hover {
-    color: #FF9900;
-    text-decoration: underline;
-  }
-  tr:nth-child(odd) {
-    background-color: whitesmoke;
-
-  }
-  tr:nth-child(even) {
-    background-color: white;
-  }
-  .publication_button {
-    padding-left: 10px;
-    padding-right: 20px;
-    font-size: 15px;
-  }
-  .publication_item {
-    padding-left: 10px;
-    padding-right: 50px;
-  }
-}
-
 .publication_title {
   text-align: center;
 }
@@ -131,4 +90,3 @@ ul.secondary-nav {
 .terms_of_service .field_with_errors {
   display: inline;
 }
-
