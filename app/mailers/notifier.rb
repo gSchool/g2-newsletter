@@ -12,4 +12,11 @@ class Notifier < ActionMailer::Base
     @password_reset_token = hmac_token
     mail(:to => user.email, :subject => 'Password Reset Instructions.')
   end
+
+  def new_article(user, article)
+    @user = user
+    @article = article
+    mail( :to => @user.email,
+          :subject => "A new article has been added to #{@article.publication.name}")
+  end
 end

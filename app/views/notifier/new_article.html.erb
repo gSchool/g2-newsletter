@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+</head>
+<body>
+<h1>A new article has been added to <%= @article.publication.name %></h1>
+
+<p>
+  The article, <%= @article.title %>, can be viewed at:
+  <%= link_to @article.title, publication_article_path(@article.publication.id, @article.id) %>.<br>
+</p>
+
+<p>Thanks and have a great day!</p>
+</body>
+</html>

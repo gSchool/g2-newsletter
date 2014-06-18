@@ -8,4 +8,8 @@ class NotifierEmailJob
       ::Notifier.welcome_email(user).deliver
     end
   end
+
+  def subscription(user, article)
+    ::Notifier.new_article(user, article).deliver
+  end
 end
