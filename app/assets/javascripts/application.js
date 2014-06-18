@@ -13,3 +13,22 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+$(function(){
+  var home = $('.home');
+  var root = home.data().homepage;
+  var user = $('.user_name');
+  user.hover(function(){
+    user.css('cursor','help');
+  });
+  home.hover(function(){
+    home.css('cursor','wait');
+  });
+  user.click(function(){
+    window.location.replace(root);
+  });
+  home.click(function(){
+    window.location.replace(root);
+  })
+});
