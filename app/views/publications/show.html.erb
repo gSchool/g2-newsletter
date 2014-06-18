@@ -2,23 +2,23 @@
   <% if logged_in? && current_user.admin %>
     <%= link_to 'Add article', new_publication_article_path(@publication.id) %>
   <% end %>
-  <table>
+  <table class="form_styling">
     <tr>
-      <th>Publication name:</th>
-      <th>Description:</th>
-      <th>Articles</th>
+      <td>Publication name:</td>
+      <td>Description:</td>
     </tr>
     <tr>
       <td><%= simple_format(@publication.name) %></td>
       <td><%= simple_format(@publication.description) %></td>
-      <td>
-        <% @articles.each do |article| %>
-          <%= link_to article.title, publication_article_path(@publication.id, article.id) %>
-          <br/>
-        <% end %>
-      </td>
-    </tr>
-    <tr>
     </tr>
   </table>
+  <h1 class="article_toggle">Click to view articles</h1>
+
+  <div>
+    <ul style="list-style: none; text-align: center;">
+      <% @articles.each do |article| %>
+        <li class="toggle"><%= link_to article.title, publication_article_path(@publication.id, article.id) %></li>
+      <% end %>
+    </ul>
+  </div>
 </div>
