@@ -54,7 +54,7 @@ feature 'Guest' do
   end
   scenario 'can view the show page for a publication by clicking on it' do
     visit '/'
-    click_on 'Test Publication'
+    click_on 'More Info'
     expect(page).to have_content 'This is a description'
   end
 end

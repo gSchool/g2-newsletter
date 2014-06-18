@@ -1,5 +1,7 @@
 <div class="publication_show">
-  <%= link_to 'Add article', new_publication_article_path(@publication.id) %>
+  <% if logged_in? && current_user.admin %>
+    <%= link_to 'Add article', new_publication_article_path(@publication.id) %>
+  <% end %>
   <table>
     <tr>
       <th>Publication name:</th>

@@ -2,7 +2,7 @@
 <table class="publication_list">
   <% @publications.each do |publication| %>
     <tr>
-      <td class="publication_item"> <%= link_to publication.name, publication %></td>
+      <td class="publication_item"> <%= publication.name %></td>
       <td class="publication_button"> <%= link_to 'More Info', publication %></td>
     </tr>
   <% end %>

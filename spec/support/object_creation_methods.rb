@@ -25,11 +25,11 @@ module ObjectCreationMethods
 
   def new_publication(attributes = {})
     defaults =
-    {
-      :name => "Name#{counter}",
-      :description => 'Description'
+      {
+        :name => "Name#{counter}",
+        :description => 'Description'
 
-    }
+      }
     Publication.new(defaults.merge(attributes))
   end
 
@@ -40,6 +40,15 @@ module ObjectCreationMethods
   def counter
     @counter ||= -1
     @counter += 1
+  end
+
+  def create_article(attributes = {})
+    defaults = {
+      title: "Article Title",
+      description: "Article Description",
+      publication_id: Publication.last
+    }
+    Article.create(defaults.merge(attributes))
   end
 
 end
