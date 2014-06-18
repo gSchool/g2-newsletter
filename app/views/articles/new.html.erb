@@ -1,7 +1,16 @@
 <%= form_for @article, :url => publication_articles_path do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  <%= f.submit 'Add Article' %>
+  <table class="form_styling">
+    <tr>
+      <td><%= f.label :title %></td>
+      <td><%= f.text_field :title %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :description %></td>
+      <td><%= f.text_area :description %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= f.submit 'Add Article' %></td>
+    </tr>
+  </table>
 <% end %>
