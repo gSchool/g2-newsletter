@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   end
   resources :subscriptions, :only => [:index, :create]
 
-  #resources :forgot_password
-
   get "forgot_password" => "forgot_password#forgot_password"
   put "forgot_password" => "forgot_password#send_password"
 

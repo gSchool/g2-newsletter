@@ -5,8 +5,8 @@ describe Subscription do
     let(:publication) { create_publication }
     let(:user) { create_user }
     let(:subscription) { create_subscription(user.id, publication.id) }
-    let(:subscription2) { create_subscription(nil, publication.id) }
-    let(:subscription3) { create_subscription(user.id, nil) }
+    let(:subscription2) { new_subscription(nil, publication.id) }
+    let(:subscription3) { new_subscription(user.id, nil) }
 
     it 'can create a valid subscription' do
       expect(subscription).to be_valid
@@ -17,7 +17,7 @@ describe Subscription do
     end
 
     it 'is not a valid subscription when publication_id is missing' do
-      expect(subscription2).to_not be_valid
+      expect(subscription3).to_not be_valid
     end
   end
 end

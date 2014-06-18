@@ -33,8 +33,13 @@ module ObjectCreationMethods
     Publication.new(defaults.merge(attributes))
   end
 
+  def new_subscription(user_id, publication_id)
+    Subscription.new(user_id: user_id, publication_id: publication_id)
+
+  end
+
   def create_subscription(user_id, publication_id)
-    Subscription.create(user_id: user_id, publication_id: publication_id)
+    Subscription.create!(user_id: user_id, publication_id: publication_id)
   end
 
   def counter
