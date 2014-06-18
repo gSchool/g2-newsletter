@@ -1,4 +1,14 @@
 class ArticlesController < ApplicationController
+  def show
+    publication = Publication.find(params[:publication_id])
+    users_publications = current_user.subscriptions.map { |sub| sub.publication }
+    if users_publications.include?(publication)
+      @article = Article.find(params[:id])
+    else
+      render :file => 'public/404.html', :status => :not_found, :layout => false
+    end
+  end
+
   def new
     @article = Article.new
   end

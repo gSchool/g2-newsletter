@@ -46,7 +46,7 @@ module ObjectCreationMethods
     defaults = {
       title: "Article Title",
       description: "Article Description",
-      publication_id: Publication.last
+      publication_id: Publication.last.id
     }
     Article.create(defaults.merge(attributes))
   end

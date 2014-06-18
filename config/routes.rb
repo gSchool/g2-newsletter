@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :users, :only => [:create, :destroy, :new, :show]
   resources :sessions, :only => [:destroy, :create, :new]
   resources :publications do
-    resources :articles, :only => [:new, :create]
+    resources :articles, :only => [:new, :create, :show]
   end
   resources :subscriptions, :only => [:index, :create]
 
