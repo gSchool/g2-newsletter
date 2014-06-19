@@ -71,7 +71,9 @@ ul.secondary-nav {
   color: #FF9900;
   padding-right: 7px;
 }
-
+.welcome_flash{
+  clear:both;
+}
 .welcome_flash, .errors ul {
   font-family: 'Roboto', sans-serif;
   background-color: #FF9900;
@@ -90,4 +92,77 @@ ul.secondary-nav {
 
 .terms_of_service .field_with_errors {
   display: inline;
+}
+
+#stripe_information{
+  max-width:400px;
+
+  margin:0 auto;
+  p {
+    text-align: center;
+  }
+  form{
+    width:70%;
+    margin:0 auto;
+    .card_info{
+      margin:0 auto;
+    }
+  }
+  .card-info{
+    margin-top:1em;
+    overflow:hidden;
+  }
+  input[type='text']{
+    font-size: 1em !important;
+    padding:.4em;
+    width:100%;
+    &#cvv{
+
+      width:80%;
+    }
+  }
+  input[type='submit']{
+    clear:both;
+    font-size: 1em !important;
+    padding: .2em .3em;
+    background-color: #ff9900;
+    color: #ffffff;
+    border-radius: 3px;
+    border-top: 1px solid #FFAA27;
+    border-bottom: 1px solid #9F5300;
+    border-left: 1px solid #FFAA27;
+    border-right: 1px solid #9F5300;
+    &:hover {
+      background-color: #ffb50a;
+    }
+    display:block;
+    margin:1em auto;
+  }
+  select{
+    border: 1px solid slategray;
+    font-size:1em;
+    padding:1em;
+    line-height: 1.5em;
+    text-indent: 0.01px;
+    text-overflow: '';
+  }
+  .cvv-exp{
+    overflow:hidden;
+  }
+  .cvv{
+    float:left;
+    width:45%;
+    input{
+      margin-top:.5em;
+    }
+  }
+  .exp{
+    float:right;
+
+    select{
+      margin-top:.8em;
+    }
+  }
+
+
 }

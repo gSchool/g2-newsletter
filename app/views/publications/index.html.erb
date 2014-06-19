@@ -13,7 +13,7 @@
         <td class="publication_button"> <%= link_to "More info", publication %></td>
         <td class="subscribe_button">
           <% if !@user_subscriptions.include?(publication.id) %>
-            <%= form_tag subscriptions_path, method: :post do %>
+            <%= form_tag new_subscription_path, method: :get do %>
               <%= hidden_field_tag :publication_id, publication.id %>
               <%= submit_tag "Subscribe" %>
             <% end %>

@@ -1,0 +1,42 @@
+<div id="stripe_information">
+  <% if current_user.stripe_id %>
+    <p>By clicking 'Submit', you authorize g2-Newsletter to make a recurring monthly payment of $9.99 using your
+      existing credit card</p>
+    <%= form_tag subscriptions_path, method: :post, id: 'authorize_payment_form' do %>
+      <input type="hidden" name="publication_id" value="<%= @publication_id %>">
+      <%= submit_tag "Submit" %>
+    <% end %>
+
+  <% else %>
+    <p>By clicking 'Submit', you authorize g2-Newsletter to make a recurring monthly payment of $9.99</p>
+
+    <%= form_tag subscriptions_path, method: :post, id: 'stripe_form' do %>
+
+      <input type="hidden" name="publication_id" value="<%= @publication_id %>">
+
+      <div class="card-info">
+        <%= label_tag :credit_card_number %>
+        <div class="input">
+          <%= text_field_tag :credit_card_number %>
+        </div>
+      </div>
+      <div class="cvv-exp">
+        <div class="card-info cvv">
+          <%= label_tag :cvv, "(CVV)" %>
+          <div class="input">
+            <%= text_field_tag :cvv %>
+          </div>
+        </div>
+
+        <div class="card-info exp">
+          <%= label_tag :expiry_date, "Expiration Date" %>
+          <div class="input">
+            <%= date_select "", :expiry_date, {:discard_day => true, :order => [:month, :year], :use_month_numbers => true, :start_year => Date.today.year, :end_year => Date.today.year + 25}, {} %>
+          </div>
+        </div>
+      </div>
+
+      <%= submit_tag "Submit" %>
+    <% end %>
+  <% end %>
+</div>

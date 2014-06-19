@@ -6,10 +6,13 @@ Rails.application.routes.draw do
 
   resources :users, :only => [:create, :destroy, :new, :show]
   resources :sessions, :only => [:destroy, :create, :new]
+
   resources :publications do
     resources :articles, :only => [:new, :create, :show]
   end
-  resources :subscriptions, :only => [:index, :create]
+
+  resources :subscriptions, :only => [:index, :create, :new]
+
 
   get "forgot_password" => "forgot_password#forgot_password"
   put "forgot_password" => "forgot_password#send_password"

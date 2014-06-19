@@ -3,13 +3,25 @@ class SubscriptionsController < SecureController
     @subscriptions = current_user.subscriptions
   end
 
-  def create
-    subscription = Subscription.new(publication_id: params[:publication_id], user_id: current_user.id)
-    if subscription.save
-      flash[:success] = 'Your subscription is successful'
-      redirect_to user_path(current_user.id)
-    else
-      render '/publications', flash[:error] => 'Please try again, there has been an error'
-    end
+  def new
+    @publication_id = params[:publication_id]
   end
+
+  def create
+    token = params[:stripeToken]
+
+    begin
+      SubscriptionCreator.new(current_user, params[:publication_id], token).create_subscription
+      flash[:notice] = 'Your subscription is successful'
+      redirect_to user_path(current_user.id)
+    rescue SubscriptionError => e
+      flash[:error] = e
+      render '/publications'
+    rescue StripeError => e
+      flash[:error] = e
+      render :new
+    end
+
+  end
+
 end
