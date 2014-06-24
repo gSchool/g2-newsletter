@@ -19,15 +19,16 @@ gem 'dotenv-rails', '~> 0.11.1'
 
 group :production do
   gem 'rails_12factor', '~>0.0.2'
+  gem 'jazz_hands', '~> 0.5.2'
 end
 
 group :test do
+  gem 'pry'
   gem 'webmock', '~> 1.18.0'
   gem 'vcr', '~> 2.9.2'
   gem 'rspec-rails', '2.14.2'
   gem 'capybara'
   gem 'launchy'
-  gem 'pry'
   gem 'selenium-webdriver', '~> 2.42.0'
   gem 'database_cleaner', '~> 1.3.0'
 end

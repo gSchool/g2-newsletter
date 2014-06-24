@@ -21,7 +21,10 @@ feature 'User can view articles' do
     create_article
     register_user
   end
-  scenario 'User can view details of an article' do
+  scenario 'User can view details of an article and is sent an email when a new article is created' do
+    emails = ActionMailer::Base.deliveries.length
+    create_user(email: 'admin@example.com',
+                admin: true)
     VCR.use_cassette('subscription') do
       click_on 'All Publications'
       within '.publication_list tr:nth-child(1)' do
@@ -38,8 +41,23 @@ feature 'User can view articles' do
       expect(page).to have_content 'Article Title'
       expect(page).to have_content 'Article Description'
     end
+
+    click_on 'Logout'
+
+    login_user(email: 'admin@example.com')
+    click_on 'All Publications'
+    click_on 'More info'
+    click_on 'Add article'
+
+    fill_in 'Title', with: 'Article 1'
+    fill_in 'Description', with: 'This is article 1'
+    click_on 'Add Article'
+    article = Article.last
+    users = article.publication.subscriptions.includes(:user).map { |sub| sub.user }
+
+    expect(users.count).to eq(1)
+    expect(ActionMailer::Base.deliveries.length).to eq(emails + 1)
   end
-  
 
   scenario 'User cannot view details of an article if they are not subscribed' do
     click_on 'All Publications'
