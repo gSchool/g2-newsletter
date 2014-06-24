@@ -25,6 +25,7 @@ feature 'manage subscriptions' do
       select "2015", from: '_expiry_date_1i'
 
       click_button 'Submit'
+      expect(page).to have_content 'Your subscription is successful'
 
       expect(page).to have_content 'My Subscriptions'
       expect(page).to have_content 'Test Publication'
