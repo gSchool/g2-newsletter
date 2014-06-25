@@ -20,7 +20,7 @@ feature 'Admin' do
       fill_in 'publication[description]', :with => 'This is a description'
       click_on 'Create Publication'
       expect(page).to have_content 'Publication One'
-      end
+    end
   end
   scenario 'a non admin cannot add a publication' do
     visit '/'
@@ -45,6 +45,22 @@ feature 'Admin' do
     fill_in 'article[description]', with: 'How to Code'
     click_on 'Add Article'
     expect(page).to have_content 'Rails'
+  end
+
+  scenario 'Non admin cannot add an article' do
+    publication = create_publication(:name => 'Test', :description => 'This is a description')
+    visit '/'
+
+    click_on 'Login'
+    fill_in 'email', :with => 'non_admin@email.com'
+    fill_in 'password', :with => 'password'
+    click_on 'login'
+
+    visit new_publication_article_path(publication.id)
+    fill_in 'article[title]', with: 'Rails'
+    fill_in 'article[description]', with: 'How to Code'
+    click_on 'Add Article'
+    expect(page).to have_content 'You do not have article creation privileges.'
   end
 end
 
