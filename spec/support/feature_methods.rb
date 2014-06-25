@@ -4,7 +4,7 @@ module FeatureMethods
     default_attributes = {
       :email => 'email@email.com',
       :password => 'password',
-      :password_confirmation => 'password'
+      :password_confirmation => 'password',
     }
 
     attributes = default_attributes.merge(updated_attributes)

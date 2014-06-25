@@ -17,6 +17,8 @@ class ArticlesController < ApplicationController
     if current_user.admin
       @article = Article.new(allowed_params.merge(publication_id: params[:publication_id]))
       if @article.save
+        article = Article.find(@article.id)
+        send_emails(article)
         redirect_to publication_path(params[:publication_id])
       else
         flash[:notice] = 'Article could not be saved'
@@ -31,5 +33,12 @@ class ArticlesController < ApplicationController
   private
   def allowed_params
     params.require(:article).permit(:title, :description)
+  end
+
+  def send_emails(article)
+    users = article.publication.subscriptions.includes(:user).map{|sub| sub.user}
+    users.each do |user|
+      NotifierEmailJob.new.async.subscription(user, article)
+    end
   end
 end
