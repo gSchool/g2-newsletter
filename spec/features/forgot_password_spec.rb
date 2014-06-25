@@ -13,14 +13,14 @@ feature 'User' do
   scenario 'user sent email and given message when when email entered' do
     fill_in 'user[email]', :with => "#{@user.email}"
     click_on 'Send Password Reset Instructions'
-    expect(page).to have_content 'Email with instructions on reseting your password has been sent'
+    expect(page).to have_content 'Email with instructions on resetting your password has been sent'
     expect(ActionMailer::Base.deliveries.length).to eq (@emails_sent + 1)
   end
 
-  scenario 'message sent if email that does not exist it database given' do
+  scenario 'user enters an email that does not exist, but sees a message saying it was sent (anti-phishing)' do
     fill_in 'user[email]', :with => 'not_in_database@example.com'
     click_on 'Send Password Reset Instructions'
-    expect(page).to have_content 'Email with instructions on reseting your password has been sent'
+    expect(page).to have_content 'Email with instructions on resetting your password has been sent'
     expect(ActionMailer::Base.deliveries.length).to eq (@emails_sent)
   end
 
@@ -37,7 +37,7 @@ feature 'User' do
   end
 
   scenario 'A user can reset their password' do
-    NotifierEmailJob.new.async.perform(@user, HmacToken.password_reset(@user))
+    create_user
     mail_sent = ActionMailer::Base.deliveries.length
     visit '/'
     click_on 'Login'
@@ -46,7 +46,7 @@ feature 'User' do
     click_on 'Send Password Reset Instructions'
 
     expect(ActionMailer::Base.deliveries.length).to eq(mail_sent + 1)
-    expect(page).to have_content("Email with instructions on reseting your password has been sent")
+    expect(page).to have_content("Email with instructions on resetting your password has been sent")
 
     mail = ActionMailer::Base.deliveries.last
     @doc = Nokogiri::XML(mail.body.to_s)

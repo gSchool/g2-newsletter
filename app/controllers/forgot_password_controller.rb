@@ -6,10 +6,15 @@ class ForgotPasswordController < ApplicationController
 
   def send_password
     if valid_email?(params[:user][:email])
-      user = User.find_by_email(params[:user][:email])
-      NotifierEmailJob.new.async.perform(user, HmacToken.password_reset(user)) if user.present?
-        flash[:notice] = "Email with instructions on reseting your password has been sent"
-        render '/sessions/new'
+      @user = User.find_by_email(params[:user][:email])
+
+      if @user
+        token = verifier.generate(@user.id)
+        NotifierEmailJob.new.async.perform(@user, token)
+      end
+
+      flash[:notice] = "Email with instructions on resetting your password has been sent"
+      render '/sessions/new'
     else
       flash[:notice] = "Please enter a valid email address"
       redirect_to forgot_password_path
@@ -17,8 +22,12 @@ class ForgotPasswordController < ApplicationController
   end
 
   def password_reset
-    token = params[:reset_token]
-    @user = User.find_by_password_reset_token(token)
+    token = params[:token]
+
+    user_id = verifier.verify(token)
+
+    @user = User.find_by(id: user_id)
+
     if @user.nil?
       flash[:error] = 'You have not requested a password reset.'
       redirect_to :root
@@ -40,6 +49,10 @@ class ForgotPasswordController < ApplicationController
   end
 
   private
+
+  def verifier
+    ActiveSupport::MessageVerifier.new(Rails.application.secrets.secret_key_base)
+  end
 
   def valid_email?(email)
     !!/([a-z\d._-]+)@([a-z\d._-]{2,}).([a-z\d._-]{3,})/i.match(email)
