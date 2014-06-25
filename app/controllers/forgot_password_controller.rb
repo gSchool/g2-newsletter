@@ -9,7 +9,8 @@ class ForgotPasswordController < ApplicationController
       @user = User.find_by_email(params[:user][:email])
 
       if @user
-        token = verifier.generate(@user.id)
+        expired_time = 2.hours.from_now
+        token = verifier.generate({id: @user.id, time: expired_time})
         NotifierEmailJob.new.async.perform(@user, token)
       end
 
@@ -23,14 +24,18 @@ class ForgotPasswordController < ApplicationController
 
   def password_reset
     token = params[:token]
+    user_info = verifier.verify(token)
+    expiration_time = user_info[:time]
 
-    user_id = verifier.verify(token)
-
-    @user = User.find_by(id: user_id)
-
-    if @user.nil?
-      flash[:error] = 'You have not requested a password reset.'
-      redirect_to :root
+    if Time.now <= expiration_time
+      @user = User.find_by(id: user_info[:id])
+      if @user.nil?
+        flash[:error] = 'You have not requested a password reset.'
+        redirect_to forgot_password_path
+      end
+    else
+      flash[:error] = 'Your password reset token has expired. Request a new password by clicking Forgot Password.'
+      redirect_to forgot_password_path
     end
   end
 
