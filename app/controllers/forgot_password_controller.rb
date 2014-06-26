@@ -29,10 +29,6 @@ class ForgotPasswordController < ApplicationController
 
     if Time.now <= expiration_time
       @user = User.find_by(id: user_info[:id])
-      if @user.nil?
-        flash[:error] = 'You have not requested a password reset.'
-        redirect_to forgot_password_path
-      end
     else
       flash[:error] = 'Your password reset token has expired. Request a new password by clicking Forgot Password.'
       redirect_to forgot_password_path
